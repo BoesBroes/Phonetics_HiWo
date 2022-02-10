@@ -215,7 +215,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: vosk-model-small-en-us-0.15/
+          m_StringArgument: https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &332497548
@@ -1338,7 +1338,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: vosk-model-nl-spraakherkenning-0.6/
+          m_StringArgument: https://alphacephei.com/vosk/models/vosk-model-nl-spraakherkenning-0.6-lgraph.zip
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1479166878

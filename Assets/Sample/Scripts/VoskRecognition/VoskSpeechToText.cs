@@ -192,13 +192,30 @@ public class VoskSpeechToText : MonoBehaviour
     //Decompress the model zip file or return the location of the decompressed files.
     private IEnumerator Decompress()
     {
+        //if (!Path.HasExtension(ModelPath)
+        //    || Directory.Exists(
+        //        Path.Combine(Application.persistentDataPath, Path.GetFileNameWithoutExtension(ModelPath))))
+        //{
+        //    OnStatusUpdated?.Invoke("Using existing decompressed model.");
+        //    _decompressedModelPath =
+        //        Path.Combine(Application.persistentDataPath, Path.GetDirectoryName(ModelPath));
+        //    Debug.Log(_decompressedModelPath);
+
+        //    yield break;
+        //}
+
+        //OnStatusUpdated?.Invoke("Decompressing model...");
+        //string dataPath = Path.Combine(Application.streamingAssetsPath, ModelPath);
+        //Debug.Log(dataPath);
+
+
         if (!Path.HasExtension(ModelPath)
             || Directory.Exists(
                 Path.Combine(Application.persistentDataPath, Path.GetFileNameWithoutExtension(ModelPath))))
         {
             OnStatusUpdated?.Invoke("Using existing decompressed model.");
             _decompressedModelPath =
-                Path.Combine(Application.persistentDataPath, Path.GetDirectoryName(ModelPath));
+                Path.Combine(Application.persistentDataPath, Path.GetFileNameWithoutExtension(ModelPath));
             Debug.Log(_decompressedModelPath);
 
             yield break;
@@ -206,7 +223,6 @@ public class VoskSpeechToText : MonoBehaviour
 
         OnStatusUpdated?.Invoke("Decompressing model...");
         string dataPath = Path.Combine(Application.streamingAssetsPath, ModelPath);
-        Debug.Log(dataPath);
 
         Stream dataStream;
         // Read data from the streaming assets path. You cannot access the streaming assets directly on Android.
