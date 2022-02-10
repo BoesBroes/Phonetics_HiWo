@@ -102,8 +102,10 @@ public class VoskSpeechToText : MonoBehaviour
     //If Auto start is enabled, starts vosk speech to text.
     void Start()
     {
+        OnStatusUpdated?.Invoke("not started start");
         if (AutoStart)
         {
+            OnStatusUpdated?.Invoke("started start");
             StartVoskStt();
         }
     }
@@ -117,9 +119,12 @@ public class VoskSpeechToText : MonoBehaviour
     /// <param name="maxAlternatives">The maximum number of alternative phrases detected</param>
     public void StartVoskStt( List<string> keyPhrases= null, string modelPath = default, bool startMicrophone = false, int maxAlternatives = 3)
     {
+        OnStatusUpdated?.Invoke("started");
+
         if (_isInitializing)
         {
             Debug.LogError("Initializing in progress!");
+            OnStatusUpdated?.Invoke("error");
             return;
         }
         if (_didInit)
@@ -142,6 +147,8 @@ public class VoskSpeechToText : MonoBehaviour
 
         MaxAlternatives = maxAlternatives;
         StartCoroutine(DoStartVoskStt(startMicrophone));
+        OnStatusUpdated?.Invoke("started real");
+
     }
 
     //Decompress model, load settings, start Vosk and optionally start the microphone
@@ -207,6 +214,8 @@ public class VoskSpeechToText : MonoBehaviour
         //OnStatusUpdated?.Invoke("Decompressing model...");
         //string dataPath = Path.Combine(Application.streamingAssetsPath, ModelPath);
         //Debug.Log(dataPath);
+
+        OnStatusUpdated?.Invoke(ModelPath);
 
 
         if (!Path.HasExtension(ModelPath)
