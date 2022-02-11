@@ -41,7 +41,8 @@ public class VoiceProcessor : MonoBehaviour
     /// </summary>
     public bool IsRecording
     {
-        get { return _audioClip != null && Microphone.IsRecording(CurrentDeviceName); }
+        get { 
+            return _audioClip != null && Microphone.IsRecording(CurrentDeviceName); }
     }
 
     [SerializeField] private int MicrophoneIndex;
@@ -113,10 +114,29 @@ public class VoiceProcessor : MonoBehaviour
     AudioClip _audioClip;
     private event Action RestartRecording;
 
-    void Awake()
-    {
-        UpdateDevices();
-    }
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        void Awake()
+        {
+            Microphone.Init();
+            Microphone.QueryAudioInput();
+            UpdateDevices();
+        }
+#elif UNITY_WEBGL && !UNITY_EDITOR
+     void Awake()
+        {
+            UpdateDevices();
+        }
+    #endif
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        void Update()
+        {
+            Microphone.Update();
+        }
+#endif
+
+
 #if UNITY_EDITOR
     void Update()
     {
@@ -208,7 +228,7 @@ public class VoiceProcessor : MonoBehaviour
         SampleRate = sampleRate;
         FrameLength = frameSize;
 
-        _audioClip = Microphone.Start(CurrentDeviceName, true, 1, sampleRate);
+        //_audioClip = Microphone.Start(CurrentDeviceName, true, 1, sampleRate);
 
         StartCoroutine(RecordData());
     }
@@ -242,16 +262,21 @@ public class VoiceProcessor : MonoBehaviour
 
         while (IsRecording)
         {
-            int curClipPos = Microphone.GetPosition(CurrentDeviceName);
-            if (curClipPos < startReadPos)
-                curClipPos += _audioClip.samples;
+            //int curClipPos = Microphone.GetPosition(CurrentDeviceName);
+            //if (curClipPos < startReadPos)
+            //    curClipPos += _audioClip.samples;
 
-            int samplesAvailable = curClipPos - startReadPos;
-            if (samplesAvailable < FrameLength)
-            {
-                yield return null;
+            //int samplesAvailable = curClipPos - startReadPos;
+            //if (samplesAvailable < FrameLength)
+            //{
+            //    yield return null;
+            //    continue;
+            //}
+
+
+            //TEMP!!!
+            yield return null;
                 continue;
-            }
 
             int endReadPos = startReadPos + FrameLength;
             if (endReadPos > _audioClip.samples)
