@@ -8,10 +8,11 @@
     "includePlatforms": [
         "Android",
         "Editor",
+        "WebGL",
         "WindowsStandalone64"
     ],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
+    "allowUnsafeCode": true,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
