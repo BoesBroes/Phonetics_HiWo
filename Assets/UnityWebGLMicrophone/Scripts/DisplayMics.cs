@@ -246,7 +246,7 @@ namespace UnityWebGLMicrophone
 
                 //TEMP!!!
                 yield return null;
-                    continue;
+                continue;
 
                 int endReadPos = startReadPos + FrameLength;
                 if (endReadPos > _audioClip.samples)

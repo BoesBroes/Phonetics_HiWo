@@ -12,6 +12,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using Vosk;
 
+
 public class VoskSpeechToText : MonoBehaviour
 {
     [Tooltip("Location of the model, relative to the Streaming Assets folder.")]
@@ -160,8 +161,8 @@ public class VoskSpeechToText : MonoBehaviour
         yield return Decompress();
 
         OnStatusUpdated?.Invoke("Loading Model from: " + _decompressedModelPath);
-        Vosk.Vosk.SetLogLevel(0);
-        _model = new Model(_decompressedModelPath);
+        //Vosk.Vosk.SetLogLevel(0);
+        //_model = new Model(_decompressedModelPath);
 
         yield return null;
 
