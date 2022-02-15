@@ -122,10 +122,9 @@ public class VoiceProcessor : MonoBehaviour
             Microphone.QueryAudioInput();
             UpdateDevices();
         }
-#else
+#elif UNITY_WEBGL && !UNITY_EDITOR
      void Awake()
         {
-        Debug.Log("lol");
             UpdateDevices();
         }
     #endif
@@ -229,7 +228,6 @@ public class VoiceProcessor : MonoBehaviour
         SampleRate = sampleRate;
         FrameLength = frameSize;
 
-        //change to update
         //_audioClip = Microphone.Start(CurrentDeviceName, true, 1, sampleRate);
 
         StartCoroutine(RecordData());
@@ -278,7 +276,7 @@ public class VoiceProcessor : MonoBehaviour
 
             //TEMP!!!
             yield return null;
-            continue;
+                continue;
 
             int endReadPos = startReadPos + FrameLength;
             if (endReadPos > _audioClip.samples)
