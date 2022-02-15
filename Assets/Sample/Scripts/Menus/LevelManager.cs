@@ -13,8 +13,6 @@ public class LevelManager : MonoBehaviour
 
     private string lastScene;
 
-    //ben ik code vergeten te saven?:'^)
-
     // Start is called before the first frame update
     void Awake()
     {
