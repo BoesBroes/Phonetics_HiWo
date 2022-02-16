@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 public class VoskResultText : MonoBehaviour 
 {
     public VoskSpeechToText VoskSpeechToText;
     public Text ResultText;
+
+    public GameObject taskGameMode;
 
     void Awake()
     {
@@ -23,6 +27,10 @@ public class VoskResultText : MonoBehaviour
             }
 
             ResultText.text += result.Phrases[0].Text + " | " + "Confidence: " + result.Phrases[0].Confidence;
+        }
+        if(taskGameMode)
+        {
+//            taskGameMode.GetComponent<TaskGameMode>().currentTask;
         }
     }
 }

@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class ChangeLanguage : MonoBehaviour
 {
-    //public string english;
-    //public string dutch;
-
-    public GameObject languageController; //thecontroller
-
-    // Start is called before the first frame update
     void Start()
     {
+        //change language in playerprefs if it doesnt exist
+        //language gets loaded in VoskSpeechToText at start of level
         if (PlayerPrefs.GetString("languages") == null)
         {
-            PlayerPrefs.SetString("languages", "vosk-model-nl-spraakherkenning-0.6/");
+            PlayerPrefs.SetString("languages", "vosk-model-nl-spraakherkenning-0.6.zip");
         }
     }
 
@@ -24,6 +20,7 @@ public class ChangeLanguage : MonoBehaviour
         
     }
 
+    //change language
     public void ChangeLanguageSpeech(string newLanguage)
     {
         PlayerPrefs.SetString("languages", newLanguage);
