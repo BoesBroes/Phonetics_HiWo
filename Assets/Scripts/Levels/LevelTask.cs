@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Task : MonoBehaviour
+public class LevelTask : MonoBehaviour
 {
     [HideInInspector]
     //public Hint hint;
@@ -12,6 +12,7 @@ public class Task : MonoBehaviour
 
     public AudioClip startSound;
 
+    public string rightInput;
 
     void Update()
     {

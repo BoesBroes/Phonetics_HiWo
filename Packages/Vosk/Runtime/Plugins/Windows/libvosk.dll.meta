@@ -21,7 +21,7 @@ PluginImporter:
         Exclude Linux64: 0
         Exclude Lumin: 1
         Exclude OSXUniversal: 0
-        Exclude WebGL: 1
+        Exclude WebGL: 0
         Exclude Win: 0
         Exclude Win64: 0
   - first:
@@ -70,7 +70,7 @@ PluginImporter:
   - first:
       WebGL: WebGL
     second:
-      enabled: 0
+      enabled: 1
       settings: {}
   userData: 
   assetBundleName: 

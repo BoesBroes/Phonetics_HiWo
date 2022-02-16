@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TaskGameMode : Task
+public class TaskGameMode : LevelTask
 {
     //[Header("UI")]
     //public UIManager UI;
@@ -15,7 +15,7 @@ public class TaskGameMode : Task
 
     [Header("Tasks")]
     public GameObject taskParent;
-    public Task currentTask;
+    public LevelTask currentTask;
     private List<GameObject> tasks = new List<GameObject>();
     private int taskIndex = 0;//When a task gets done, this gets incremented
     private bool levelFinished = false;
@@ -44,14 +44,14 @@ public class TaskGameMode : Task
 
         tasks.Clear();
 
-        Task[] allChildren = taskParent.GetComponentsInChildren<Task>();
-        foreach (Task child in allChildren)
+        LevelTask[] allChildren = taskParent.GetComponentsInChildren<LevelTask>();
+        foreach (LevelTask child in allChildren)
         {
             tasks.Add(child.gameObject);
             child.gameMode = this;
             child.gameObject.SetActive(false);
         }
-        currentTask = tasks[0].GetComponent<Task>();
+        currentTask = tasks[0].GetComponent<LevelTask>();
 
         if (beginScreen)
         {
@@ -93,7 +93,7 @@ public class TaskGameMode : Task
 
         foreach (GameObject task in tasks)
         {
-            task.GetComponent<Task>().gameMode = this;
+            task.GetComponent<LevelTask>().gameMode = this;
         }
 
         //If there is no tasks set in the game mode, there won't be a task at index 0 either. so end the level so the user doesn't get stuck and report an error
@@ -157,8 +157,8 @@ public class TaskGameMode : Task
             if (!tasks[taskIndex].activeSelf)
             {
                 tasks[taskIndex].SetActive(true);
-                tasks[taskIndex].gameObject.GetComponent<Task>().StartTask();
-                currentTask = tasks[taskIndex].GetComponent<Task>();
+                tasks[taskIndex].gameObject.GetComponent<LevelTask>().StartTask();
+                currentTask = tasks[taskIndex].GetComponent<LevelTask>();
             }
         }
 
@@ -166,6 +166,14 @@ public class TaskGameMode : Task
         else if (taskIndex >= tasks.Count)
         {
             EndLevel();
+        }
+    }
+
+    public void CheckSpeechInput(string input)
+    {
+        if(input.Contains(currentTask.rightInput))
+        {
+            GoToNextTask();
         }
     }
 

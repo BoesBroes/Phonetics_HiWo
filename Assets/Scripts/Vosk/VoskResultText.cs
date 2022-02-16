@@ -30,7 +30,7 @@ public class VoskResultText : MonoBehaviour
         }
         if(taskGameMode)
         {
-//            taskGameMode.GetComponent<TaskGameMode>().currentTask;
+            taskGameMode.GetComponent<TaskGameMode>().CheckSpeechInput(result.Phrases[0].Text);
         }
     }
 }

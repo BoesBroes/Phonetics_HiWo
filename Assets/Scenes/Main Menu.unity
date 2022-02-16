@@ -1104,7 +1104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe4a5f3b3cf18b47b579a8d5c61f82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  languageController: {fileID: 0}
 --- !u!114 &1393898093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,7 +1337,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: vosk-model-small-en-us-0.15.zip
+          m_StringArgument: vosk-model-nl-spraakherkenning-0.6.zip
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1479166878
