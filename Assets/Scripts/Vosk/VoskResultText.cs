@@ -26,11 +26,19 @@ public class VoskResultText : MonoBehaviour
                 ResultText.text += "\n ---------- \n";
             }
 
-            ResultText.text += result.Phrases[0].Text + " | " + "Confidence: " + result.Phrases[0].Confidence;
+            ResultText.text += result.Phrases[i].Text + " | " + "Confidence: " + result.Phrases[i].Confidence;
         }
         if(taskGameMode)
         {
-            taskGameMode.GetComponent<TaskGameMode>().CheckSpeechInput(result.Phrases[0].Text);
+            GameObject currentObject = taskGameMode.GetComponent<TaskGameMode>().currentTask.gameObject;
+            for (int i = 0; i < result.Phrases.Length; i++)
+            {
+                if(currentObject == taskGameMode.GetComponent<TaskGameMode>().currentTask.gameObject)
+                {
+                    Debug.Log("test");
+                    taskGameMode.GetComponent<TaskGameMode>().CheckSpeechInput(result.Phrases[i].Text);
+                }
+            }
         }
     }
 }

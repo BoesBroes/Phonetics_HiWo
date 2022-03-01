@@ -37,6 +37,8 @@ public class TaskGameMode : LevelTask
 
     public Text endText;
 
+    private int stringCheckCount;
+
     void Start()
     {
         PlaySound(startSceneSound);
@@ -57,6 +59,10 @@ public class TaskGameMode : LevelTask
         {
             beginScreen.SetActive(true);
         }
+
+        currentTask.gameObject.SetActive(true);
+        currentTask.StartTask();
+        Debug.Log("?");
 
     }
 
@@ -83,7 +89,7 @@ public class TaskGameMode : LevelTask
         if(!gameOver)
         {
             currentTask.gameObject.SetActive(true);
-            currentTask.StartTask();
+            //currentTask.StartTask();
         }    
     }
 
@@ -171,9 +177,17 @@ public class TaskGameMode : LevelTask
 
     public void CheckSpeechInput(string input)
     {
-        if(input.Contains(currentTask.rightInput))
+        stringCheckCount++;
+
+        if (input.Contains(currentTask.rightInput))
         {
             GoToNextTask();
+            stringCheckCount = 0;
+        }
+        else if(stringCheckCount == 3)
+        {
+            currentTask.GetComponent<LevelTask>().StartTask();
+            stringCheckCount = 0;
         }
     }
 

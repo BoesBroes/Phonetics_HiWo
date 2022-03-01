@@ -99,6 +99,8 @@ public class VoskSpeechToText : MonoBehaviour
     static readonly ProfilerMarker voskRecognizerCreateMarker = new ProfilerMarker("VoskRecognizer.Create");
     static readonly ProfilerMarker voskRecognizerReadMarker = new ProfilerMarker("VoskRecognizer.AcceptWaveform");
 
+    public static VoskSpeechToText voskSpeechToText;
+
     //If Auto start is enabled, starts vosk speech to text.
     void Start()
     {
@@ -108,6 +110,11 @@ public class VoskSpeechToText : MonoBehaviour
             OnStatusUpdated?.Invoke("started start");
             StartVoskStt();
         }
+        if (voskSpeechToText == null)
+        {
+            voskSpeechToText = this;
+        }
+        //maybe else statement..?
     }
 
     /// <summary>
