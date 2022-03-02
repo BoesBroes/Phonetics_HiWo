@@ -38,6 +38,7 @@ public class TaskGameMode : LevelTask
     public Text endText;
 
     private int stringCheckCount;
+    private bool stringCheckRunning;
 
     void Start()
     {
@@ -123,8 +124,9 @@ public class TaskGameMode : LevelTask
     }
 
 
-    public void TaskFinished(float angerChange, float happinessChange, float socialChange)
+    public void TaskFinished()
     {
+        currentTask.StopAllCoroutines();
         GoToNextTask();
     }
 
@@ -171,6 +173,7 @@ public class TaskGameMode : LevelTask
         //If the last task, then the level is done
         else if (taskIndex >= tasks.Count)
         {
+            currentTask.gameObject.SetActive(false);
             EndLevel();
         }
     }
@@ -181,13 +184,35 @@ public class TaskGameMode : LevelTask
 
         if (input.Contains(currentTask.rightInput))
         {
+            StopCoroutine(WaitForAllStrings());
             GoToNextTask();
             stringCheckCount = 0;
+            stringCheckRunning = false;
         }
         else if(stringCheckCount == 3)
         {
+            StopCoroutine(WaitForAllStrings());
             currentTask.GetComponent<LevelTask>().StartTask();
             stringCheckCount = 0;
+            stringCheckRunning = false;
+        }
+
+        if (!stringCheckRunning)
+        {
+            stringCheckRunning = true;
+            StartCoroutine(WaitForAllStrings());
+        }
+    }
+
+    IEnumerator WaitForAllStrings()
+    {
+        var thisTask = currentTask;
+        yield return new WaitForSeconds(5f);
+        if (stringCheckCount != 3 && stringCheckRunning && thisTask == currentTask)
+        {
+            stringCheckCount = 0;
+            stringCheckRunning = false;
+            currentTask.GetComponent<LevelTask>().StartTask();
         }
     }
 
@@ -205,6 +230,11 @@ public class TaskGameMode : LevelTask
         {
             Debug.LogError("No endscreen set in Gamemode. Won't be displayed!");
             return;
+        }
+
+        else
+        {
+            endScreen.SetActive(true);
         }
 
         //if (!UI)

@@ -30,25 +30,24 @@ public class LevelTask : MonoBehaviour
         }
         else
         {
-            StartCoroutine(WaitCoroutine());
+           // StartCoroutine(WaitCoroutine());
         }
     }
 
     IEnumerator WaitSoundFinished()
     {
-        yield return new WaitForSeconds(startSound.length);
+        yield return new WaitForSeconds(startSound.length + .5f);
         sourceAudio.clip = beep;
         sourceAudio.Play();
 
-        VoskSpeechToText.voskSpeechToText.VoiceProcessor.StopRecording();
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(beep.length);
 
-        VoskSpeechToText.voskSpeechToText.ToggleRecording();
+        VoskSpeechToText.voskSpeechToText.VoiceProcessor.StartRecording();
 
         yield return new WaitForSeconds(5f);
 
-        VoskSpeechToText.voskSpeechToText.ToggleRecording();
+        VoskSpeechToText.voskSpeechToText.VoiceProcessor.StopRecording();
 
         runningTask = false;
     }
@@ -57,7 +56,7 @@ public class LevelTask : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
 
-        VoskSpeechToText.voskSpeechToText.VoiceProcessor.StopRecording();
+        //VoskSpeechToText.voskSpeechToText.VoiceProcessor.StopRecording();
 
         runningTask = false;
 
