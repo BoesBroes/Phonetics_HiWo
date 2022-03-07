@@ -215,7 +215,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: vosk-model-small-en-us-0.15.zip
+          m_StringArgument: vosk-model-nl-spraakherkenning-0.6.zip
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &332497548
@@ -951,7 +951,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SpeechScene
+          m_StringArgument: LevelTemplate
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1117736781
@@ -1234,9 +1234,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'English
-
-'
+  m_Text: Ook Nederlands
 --- !u!222 &1420040151
 CanvasRenderer:
   m_ObjectHideFlags: 0

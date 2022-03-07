@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TaskGameMode : LevelTask
+public class TaskGameMode : TaskMain
 {
     //[Header("UI")]
     //public UIManager UI;
@@ -15,7 +15,7 @@ public class TaskGameMode : LevelTask
 
     [Header("Tasks")]
     public GameObject taskParent;
-    public LevelTask currentTask;
+    public TaskMain currentTask;
     private List<GameObject> tasks = new List<GameObject>();
     private int taskIndex = 0;//When a task gets done, this gets incremented
     private bool levelFinished = false;
@@ -47,14 +47,14 @@ public class TaskGameMode : LevelTask
 
         tasks.Clear();
 
-        LevelTask[] allChildren = taskParent.GetComponentsInChildren<LevelTask>();
-        foreach (LevelTask child in allChildren)
+        TaskMain[] allChildren = taskParent.GetComponentsInChildren<TaskMain>();
+        foreach (TaskMain child in allChildren)
         {
             tasks.Add(child.gameObject);
             child.gameMode = this;
             child.gameObject.SetActive(false);
         }
-        currentTask = tasks[0].GetComponent<LevelTask>();
+        currentTask = tasks[0].GetComponent<TaskMain>();
 
         if (beginScreen)
         {
@@ -100,7 +100,7 @@ public class TaskGameMode : LevelTask
 
         foreach (GameObject task in tasks)
         {
-            task.GetComponent<LevelTask>().gameMode = this;
+            task.GetComponent<TaskMain>().gameMode = this;
         }
 
         //If there is no tasks set in the game mode, there won't be a task at index 0 either. so end the level so the user doesn't get stuck and report an error
@@ -165,8 +165,8 @@ public class TaskGameMode : LevelTask
             if (!tasks[taskIndex].activeSelf)
             {
                 tasks[taskIndex].SetActive(true);
-                tasks[taskIndex].gameObject.GetComponent<LevelTask>().StartTask();
-                currentTask = tasks[taskIndex].GetComponent<LevelTask>();
+                tasks[taskIndex].gameObject.GetComponent<TaskMain>().StartTask();
+                currentTask = tasks[taskIndex].GetComponent<TaskMain>();
             }
         }
 
@@ -192,7 +192,7 @@ public class TaskGameMode : LevelTask
         else if(stringCheckCount == 3)
         {
             StopCoroutine(WaitForAllStrings());
-            currentTask.GetComponent<LevelTask>().StartTask();
+            currentTask.GetComponent<TaskMain>().StartTask();
             stringCheckCount = 0;
             stringCheckRunning = false;
         }
@@ -212,7 +212,7 @@ public class TaskGameMode : LevelTask
         {
             stringCheckCount = 0;
             stringCheckRunning = false;
-            currentTask.GetComponent<LevelTask>().StartTask();
+            currentTask.GetComponent<TaskMain>().StartTask();
         }
     }
 

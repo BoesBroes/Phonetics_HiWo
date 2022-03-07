@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelTask : MonoBehaviour
+public class LevelTask : TaskMain
 {
     [HideInInspector]
     //public Hint hint;
 
-    public TaskGameMode gameMode;
 
     public AudioClip startSound;
     public AudioClip beep;
     public AudioSource sourceAudio;
 
-    public string rightInput;
 
 
-    private bool runningTask = false; 
+    private bool runningTask = false;
 
-    public void StartTask()
+    public bool wrongTask = false;
+
+    public override void StartTask()
     {
         if (!runningTask)
         {
@@ -43,13 +43,18 @@ public class LevelTask : MonoBehaviour
 
         yield return new WaitForSeconds(beep.length);
 
+        Debug.Log("Startrecording");
         VoskSpeechToText.voskSpeechToText.VoiceProcessor.StartRecording();
 
         yield return new WaitForSeconds(5f);
 
+        Debug.Log("Stoprecording");
         VoskSpeechToText.voskSpeechToText.VoiceProcessor.StopRecording();
 
-        runningTask = false;
+        if(!wrongTask)
+        {
+            runningTask = false;
+        }
     }
 
     IEnumerator WaitCoroutine()
