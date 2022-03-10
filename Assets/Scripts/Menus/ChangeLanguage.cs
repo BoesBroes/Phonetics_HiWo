@@ -14,12 +14,6 @@ public class ChangeLanguage : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     //change language
     public void ChangeLanguageSpeech(string newLanguage)
     {

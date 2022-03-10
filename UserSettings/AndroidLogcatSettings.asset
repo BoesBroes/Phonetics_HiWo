@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "RF8N201L00L",
         "name": "com.kbabilinski.voskspeech",
-        "processId": 27565,
+        "processId": 13604,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -77,30 +77,6 @@
         {
             "deviceId": "RF8N201L00L",
             "name": "com.kbabilinski.voskspeech",
-            "processId": 12282,
-            "exited": true
-        },
-        {
-            "deviceId": "RF8N201L00L",
-            "name": "com.kbabilinski.voskspeech",
-            "processId": 14030,
-            "exited": true
-        },
-        {
-            "deviceId": "RF8N201L00L",
-            "name": "com.kbabilinski.voskspeech",
-            "processId": 15527,
-            "exited": true
-        },
-        {
-            "deviceId": "RF8N201L00L",
-            "name": "com.kbabilinski.voskspeech",
-            "processId": 20985,
-            "exited": true
-        },
-        {
-            "deviceId": "RF8N201L00L",
-            "name": "com.kbabilinski.voskspeech",
             "processId": 22259,
             "exited": true
         },
@@ -108,24 +84,36 @@
             "deviceId": "RF8N201L00L",
             "name": "com.kbabilinski.voskspeech",
             "processId": 23171,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "RF8N201L00L",
             "name": "com.kbabilinski.voskspeech",
             "processId": 24210,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "RF8N201L00L",
             "name": "com.kbabilinski.voskspeech",
             "processId": 25176,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "RF8N201L00L",
             "name": "com.kbabilinski.voskspeech",
             "processId": 27565,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 15647,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 13604,
             "exited": false
         }
     ],

@@ -21,6 +21,7 @@ public class LevelTask : TaskMain
 
     public override void StartTask()
     {
+        //add a check for future tasks to check if model has been loaded here
         if (!runningTask)
         {
             runningTask = true;
