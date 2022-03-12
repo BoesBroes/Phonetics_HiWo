@@ -64,7 +64,7 @@ public class VoskSpeechToText : MonoBehaviour
     private bool _isInitializing;
 
     //Flag that is used to check if Vosk was started.
-    private bool _didInit;
+    public bool _didInit;
 
     private float _startRecordTime;
 
@@ -101,20 +101,26 @@ public class VoskSpeechToText : MonoBehaviour
 
     public static VoskSpeechToText voskSpeechToText;
 
+    void Awake()
+    {
+        if (voskSpeechToText == null)
+        {
+            voskSpeechToText = this;
+        }
+        //maybe else statement to destroy if necessary..?
+    }
+
     //If Auto start is enabled, starts vosk speech to text.
     void Start()
     {
+        
+
         OnStatusUpdated?.Invoke("not started start");
         if (AutoStart)
         {
             OnStatusUpdated?.Invoke("started start");
             StartVoskStt();
         }
-        if (voskSpeechToText == null)
-        {
-            voskSpeechToText = this;
-        }
-        //maybe else statement..?
     }
 
     /// <summary>
@@ -282,6 +288,9 @@ public class VoskSpeechToText : MonoBehaviour
         yield return new WaitForSeconds(1);
         //Dispose the zipfile reader.
         zipFile.Dispose();
+        //set the right directory
+        _decompressedModelPath =
+                Path.Combine(Application.persistentDataPath, Path.GetFileNameWithoutExtension(ModelPath));
     }
 
     ///The function that is called when the zip file extraction process is updated.

@@ -40,11 +40,16 @@ public class TaskGameMode : TaskMain
     private int stringCheckCount;
     private bool stringCheckRunning;
 
+
+    //the result text used to make clear its loading (for speech recognition test)
+    public Text resultText;
+
     void Start()
     {
-        PlaySound(startSceneSound);
+        //startsound handled by task itself (for now)
+        //PlaySound(startSceneSound);
 
-
+        //clear the list and create a new list with all objects containing TaskMain under task gameobject
         tasks.Clear();
 
         TaskMain[] allChildren = taskParent.GetComponentsInChildren<TaskMain>();
@@ -61,10 +66,19 @@ public class TaskGameMode : TaskMain
             beginScreen.SetActive(true);
         }
 
+        StartCoroutine(WaitForVoskLoad());
+    }
+
+    IEnumerator WaitForVoskLoad()
+    {
+        resultText.text = "loading..";
+        //wait until vosk has the model loaded to activate the first task
+        yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText._didInit == true);
+        //might fix crash on first try with build?
+        yield return new WaitForSeconds(1f);
         currentTask.gameObject.SetActive(true);
         currentTask.StartTask();
-        Debug.Log("?");
-
+        resultText.text = "loaded!";
     }
 
     private void Update()
@@ -182,25 +196,33 @@ public class TaskGameMode : TaskMain
     {
         stringCheckCount++;
 
-        if (input.Contains(currentTask.rightInput))
+        //do not check if its a specific type of test for speech evaluation
+        if(currentTask.GetComponent<LevelTask>().wrongWordTask)
         {
-            StopCoroutine(WaitForAllStrings());
-            GoToNextTask();
-            stringCheckCount = 0;
-            stringCheckRunning = false;
-        }
-        else if(stringCheckCount == 3)
-        {
-            StopCoroutine(WaitForAllStrings());
-            currentTask.GetComponent<TaskMain>().StartTask();
-            stringCheckCount = 0;
-            stringCheckRunning = false;
-        }
+            if (input.Contains(currentTask.rightInput))
+            {
+                StopCoroutine(WaitForAllStrings());
+                GoToNextTask();
+                stringCheckCount = 0;
+                stringCheckRunning = false;
+            }
+            else if (stringCheckCount == 3)
+            {
+                StopCoroutine(WaitForAllStrings());
+                currentTask.GetComponent<TaskMain>().StartTask();
+                stringCheckCount = 0;
+                stringCheckRunning = false;
+            }
 
-        if (!stringCheckRunning)
+            if (!stringCheckRunning)
+            {
+                stringCheckRunning = true;
+                StartCoroutine(WaitForAllStrings());
+            }
+        }
+        else
         {
-            stringCheckRunning = true;
-            StartCoroutine(WaitForAllStrings());
+            return;
         }
     }
 

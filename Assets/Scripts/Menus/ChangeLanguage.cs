@@ -8,7 +8,7 @@ public class ChangeLanguage : MonoBehaviour
     {
         //change language in playerprefs if it doesnt exist
         //language gets loaded in VoskSpeechToText at start of level
-        if (PlayerPrefs.GetString("languages") == null)
+        if (PlayerPrefs.GetString("languages") != "vosk-model-nl-spraakherkenning-0.6.zip")
         {
             PlayerPrefs.SetString("languages", "vosk-model-nl-spraakherkenning-0.6.zip");
         }

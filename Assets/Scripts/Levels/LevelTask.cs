@@ -17,7 +17,7 @@ public class LevelTask : TaskMain
 
     private bool runningTask = false;
 
-    public bool wrongTask = false;
+    public bool wrongWordTask = false;
 
     public override void StartTask()
     {
@@ -52,10 +52,9 @@ public class LevelTask : TaskMain
         Debug.Log("Stoprecording");
         VoskSpeechToText.voskSpeechToText.VoiceProcessor.StopRecording();
 
-        if(!wrongTask)
-        {
-            runningTask = false;
-        }
+        
+        runningTask = false;
+        
     }
 
     IEnumerator WaitCoroutine()

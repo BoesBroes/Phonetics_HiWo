@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "RF8N201L00L",
         "name": "com.kbabilinski.voskspeech",
-        "processId": 13604,
+        "processId": 17453,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -115,6 +115,24 @@
             "name": "com.kbabilinski.voskspeech",
             "processId": 13604,
             "exited": false
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 24267,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 26454,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 17453,
+            "exited": false
         }
     ],
     "m_Tags": {
@@ -169,5 +187,10 @@
     },
     "m_Filter": "",
     "m_FilterIsRegularExpression": false,
-    "m_SymbolPaths": []
+    "m_SymbolPaths": [
+        {
+            "Name": "C:\\Program Files\\Unity\\Hub\\Editor\\2020.3.26f1\\Editor\\Data\\PlaybackEngines\\AndroidPlayer\\Variations\\il2cpp\\Release\\Symbols\\arm64-v8a",
+            "Enabled": true
+        }
+    ]
 }

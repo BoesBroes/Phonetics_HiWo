@@ -18,6 +18,7 @@ public class VoskResultText : MonoBehaviour
     {
         Debug.Log(obj);
         ResultText.text = "Recognized: ";
+        ResultText.text += "\n ---------- \n";
         var result = new RecognitionResult(obj);
         for (int i = 0; i < result.Phrases.Length; i++)
         {
@@ -26,9 +27,11 @@ public class VoskResultText : MonoBehaviour
                 ResultText.text += "\n ---------- \n";
             }
 
-            ResultText.text += result.Phrases[i].Text + " | " + "Confidence: " + result.Phrases[i].Confidence;
+            //simplified results for test
+            //ResultText.text += result.Phrases[i].Text + " | " + "Confidence: " + result.Phrases[i].Confidence;
+            ResultText.text += result.Phrases[i].Text;
         }
-        if(taskGameMode)
+        if (taskGameMode)
         {
             GameObject currentObject = taskGameMode.GetComponent<TaskGameMode>().currentTask.gameObject;
             for (int i = 0; i < result.Phrases.Length; i++)
