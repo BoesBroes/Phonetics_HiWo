@@ -276,6 +276,8 @@ public class VoskSpeechToText : MonoBehaviour
         yield return new WaitForSeconds(1);
         //Dispose the zipfile reader.
         zipFile.Dispose();
+        _decompressedModelPath =
+                Path.Combine(Application.persistentDataPath, Path.GetFileNameWithoutExtension(ModelPath));
     }
 
     ///The function that is called when the zip file extraction process is updated.

@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "8AQX0X9SV",
+    "m_SelectedDeviceId": "RF8N201L00L",
     "m_SelectedPackage": {
-        "deviceId": "8AQX0X9SV",
+        "deviceId": "RF8N201L00L",
         "name": "com.kbabilinski.voskspeech",
-        "processId": 5751,
+        "processId": 17453,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -73,6 +73,66 @@
             "name": "com.kbabilinski.voskspeech",
             "processId": 5751,
             "exited": false
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 22259,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 23171,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 24210,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 25176,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 27565,
+            "exited": true
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 15647,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 13604,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 24267,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 26454,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.kbabilinski.voskspeech",
+            "processId": 17453,
+            "exited": false
         }
     ],
     "m_Tags": {
@@ -127,5 +187,10 @@
     },
     "m_Filter": "",
     "m_FilterIsRegularExpression": false,
-    "m_SymbolPaths": []
+    "m_SymbolPaths": [
+        {
+            "Name": "C:\\Program Files\\Unity\\Hub\\Editor\\2020.3.26f1\\Editor\\Data\\PlaybackEngines\\AndroidPlayer\\Variations\\il2cpp\\Release\\Symbols\\arm64-v8a",
+            "Enabled": true
+        }
+    ]
 }
