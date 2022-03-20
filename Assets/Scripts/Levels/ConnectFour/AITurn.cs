@@ -6,6 +6,7 @@ public class AITurn : MonoBehaviour
 {
     public GameObject playerTwoPiece;
     public GameObject fakePiece;
+    public GameObject piecesParent;
 
     private bool thinking;
 
@@ -22,10 +23,10 @@ public class AITurn : MonoBehaviour
     }
 
     //choose random place and instantiate piece
-    public void AIturn()
+    public void AIStartturn()
     {
         //thinking = true;
-        StartCoroutine(RandomThink());
+        StartCoroutine(ThinkingHard());
 
         
 
@@ -35,9 +36,17 @@ public class AITurn : MonoBehaviour
     IEnumerator ThinkingHard()
     {
         yield return RandomThink();
+        yield return new WaitForSeconds(.5f);
+
         yield return RandomThink();
+        yield return new WaitForSeconds(.25f);
+
         yield return RandomThink();
+        yield return new WaitForSeconds(.5f);
+
         yield return RandomThink();
+        yield return new WaitForSeconds(.25f);
+
 
         PlacePiece();
     }
@@ -45,16 +54,19 @@ public class AITurn : MonoBehaviour
     private IEnumerator RandomThink()
     {
         int ran = Random.Range(0, 5);
-
+        
         GameObject temp = Instantiate(fakePiece, new Vector3(placeLocations[ran].transform.position.x, placeLocations[ran].transform.position.y, 0), Quaternion.identity, placeLocations[ran].transform);
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.5f);
         Destroy(temp);
+        yield return null;
     }
 
     private void PlacePiece()
     {
         int ran = Random.Range(0, 5);
 
-        Instantiate(playerTwoPiece, new Vector3(placeLocations[ran].transform.position.x, placeLocations[ran].transform.position.y, 0), Quaternion.identity, placeLocations[ran].transform);
+        Instantiate(playerTwoPiece, new Vector3(placeLocations[ran].transform.position.x, placeLocations[ran].transform.position.y, 0), Quaternion.identity, piecesParent.transform);
+
+        ConnectManager.connectManager.PieceStarted();
     }
 }

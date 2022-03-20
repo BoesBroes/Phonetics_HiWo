@@ -6,7 +6,9 @@ public class RowManager : MonoBehaviour
 {
     public GameObject[] rowPosition;
 
-    private int currentRow = 0;
+    public int currentRow = 0;
+
+    public int rowNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +22,17 @@ public class RowManager : MonoBehaviour
         rowPosition[0].GetComponent<Collider2D>().enabled = true;
     }
 
+
+
     public void PiecePlaced()
     {
         //move the collider one place up
-        rowPosition[currentRow].GetComponent<Collider2D>().enabled = false;
+        //but dont disable last collider as its needed to check rows
+        //rowPosition[currentRow].GetComponent<Collider2D>().enabled = false;
+        ConnectManager.connectManager.CheckRow(rowPosition[currentRow], currentRow, rowNumber);
         currentRow++;
         rowPosition[currentRow].GetComponent<Collider2D>().enabled = true;
 
         //switch turns
-        ConnectManager.connectManager.SwitchTurn();
     }
 }

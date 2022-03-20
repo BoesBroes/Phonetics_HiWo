@@ -5,7 +5,10 @@ using UnityEngine;
 public class PiecePlace : MonoBehaviour
 {
     private float speed = .1f;
-    private float distance = .1f;
+    private float distance = -.1f;
+
+    public bool redPlaced;
+    public bool bluePlaced;
 
     //if collided set piece to static and move to place
     void OnTriggerEnter2D(Collider2D col)
@@ -17,14 +20,22 @@ public class PiecePlace : MonoBehaviour
     //move piece to place and run function in rowmanager
     IEnumerator MoveToPlace(Transform piece)
     {
-        Debug.Log("here");
         while(this.transform.position.y - piece.position.y < distance)
         {
             piece.transform.position = Vector3.Lerp(piece.transform.position, this.transform.position, speed);
+            yield return null;
         }
         piece.transform.position = this.transform.position;
+
+        if (piece.GetComponent<Piece>().player)
+        {
+            bluePlaced = true;
+        }
+        else
+        {
+            redPlaced = true;
+        }
+
         GetComponentInParent<RowManager>().PiecePlaced();
-        Debug.Log("here?");
-        yield return null;
     }
 }
