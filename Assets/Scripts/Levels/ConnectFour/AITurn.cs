@@ -12,8 +12,12 @@ public class AITurn : MonoBehaviour
 
     private Transform[] placeLocations;
 
+    private int max;
+
     void Start()
     {
+        max = this.transform.childCount - 1;
+
         placeLocations = new Transform[this.transform.childCount];
 
         for(int i = 0; i < placeLocations.Length; i++)
@@ -21,6 +25,26 @@ public class AITurn : MonoBehaviour
             placeLocations[i] = this.transform.GetChild(i);
         }
     }
+
+    //set the length of the array of rows again if one is removed due to being full
+    public void ReInitialize(GameObject removedObject)
+    {
+        //move last un-empty row in list to full row
+        for (int i = 0; i < placeLocations.Length; i++)
+        {
+            if (placeLocations[i].gameObject == removedObject)
+            {
+                placeLocations[i] = placeLocations[placeLocations.Length - 1];
+            }
+        }
+        Transform[] temp = new Transform[placeLocations.Length - 1];
+        temp = placeLocations;
+        placeLocations = new Transform[placeLocations.Length - 1];
+        placeLocations = temp;
+
+        max = this.transform.childCount - 1;
+    }
+
 
     //choose random place and instantiate piece
     public void AIStartturn()
@@ -53,7 +77,7 @@ public class AITurn : MonoBehaviour
 
     private IEnumerator RandomThink()
     {
-        int ran = Random.Range(0, 5);
+        int ran = Random.Range(0, max);
         
         GameObject temp = Instantiate(fakePiece, new Vector3(placeLocations[ran].transform.position.x, placeLocations[ran].transform.position.y, 0), Quaternion.identity, placeLocations[ran].transform);
         yield return new WaitForSeconds(.5f);
@@ -63,7 +87,7 @@ public class AITurn : MonoBehaviour
 
     private void PlacePiece()
     {
-        int ran = Random.Range(0, 5);
+        int ran = Random.Range(0, max);
 
         Instantiate(playerTwoPiece, new Vector3(placeLocations[ran].transform.position.x, placeLocations[ran].transform.position.y, 0), Quaternion.identity, piecesParent.transform);
 

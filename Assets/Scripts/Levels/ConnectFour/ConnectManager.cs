@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConnectManager : MonoBehaviour
+public class ConnectManager : TaskMain
 {
     public GameObject playerTurn;
-    public GameObject AITurn;
+    public GameObject computerTurn;
 
     public static ConnectManager connectManager;
 
@@ -36,10 +36,10 @@ public class ConnectManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public override void StartTask()
     {
         playerTurn.SetActive(true);
-        AITurn.SetActive(false);
+        computerTurn.SetActive(false);
     }
 
     public void CheckRow(GameObject currentPosition, int currentRow, int rowNumber)
@@ -137,7 +137,6 @@ public class ConnectManager : MonoBehaviour
 
     private void CheckPlaces(GameObject[] places)
     {
-        Debug.Log("run");
         if(diagonalCount >= 0)
         {
             //shorten places array
@@ -172,13 +171,17 @@ public class ConnectManager : MonoBehaviour
 
             if (redRowCount == 4)
             {
-                won = true;
+                won = false;
                 Debug.Log("insert winning condition");
+                gameMode.lose = true;
+                gameMode.EndLevel();
             }
             if (blueRowCount == 4)
             {
                 won = true;
                 Debug.Log("insert winning condition");
+                gameMode.win = true;
+                gameMode.EndLevel();
             }
         }
 
@@ -191,17 +194,37 @@ public class ConnectManager : MonoBehaviour
         blueRowCount = 0;
     }
 
+    public void StaleMate()
+    {
+        gameMode.stale = true;
+        gameMode.EndLevel();
+        this.gameObject.SetActive(false);
+    }
+
     public void PieceStarted()
     {
         if (playerTurn.activeSelf)
         {
             playerTurn.SetActive(false);
-            AITurn.SetActive(true);
+
+            computerTurn.SetActive(true);
+
+            if (computerTurn.transform.childCount > 1)
+            {
+                for (int i = 0; i < computerTurn.transform.childCount; i++)
+                {
+                    computerTurn.transform.GetChild(i).GetComponent<DisablePosition>().CheckTopPosition(false);
+                }
+            }
+            else
+            {
+                computerTurn.transform.GetChild(0).GetComponent<DisablePosition>().CheckTopPosition(true);
+            }
         }
         else
         {
             //playerTurn.SetActive(true);
-            AITurn.SetActive(false);
+            computerTurn.SetActive(false);
         }
     }
 
@@ -209,13 +232,28 @@ public class ConnectManager : MonoBehaviour
     {
         //switch turns between player and AI
         //TODO: add option for extra real player
-        if (AITurn.activeSelf)
+        if (computerTurn.activeSelf && computerTurn.transform.childCount > 0)
         {
-            AITurn.GetComponent<AITurn>().AIStartturn();
+            computerTurn.GetComponent<AITurn>().AIStartturn();
+        }
+        else if (computerTurn.transform.childCount == 0)
+        {
+            return;
         }
         else
         {
             playerTurn.SetActive(true);
+            if (playerTurn.transform.childCount > 1)
+            {
+                for (int i = 0; i < playerTurn.transform.childCount; i++)
+                {
+                    playerTurn.transform.GetChild(i).GetComponent<PlacingPieceButton>().CheckTopPosition(false);
+                }
+            }
+            else
+            {
+                playerTurn.transform.GetChild(0).GetComponent<PlacingPieceButton>().CheckTopPosition(true);
+            }
         }
     }
 }

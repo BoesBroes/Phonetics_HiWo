@@ -7,13 +7,10 @@ public class TalkTask : TaskMain
 
     public AudioClip startSound;
 
-    public AudioSource sourceAudio;
-
     // Start is called before the first frame update
     public override void StartTask()
     {
-        sourceAudio.clip = startSound;
-        sourceAudio.Play();
+        gameMode.PlaySound(startSound);
         StartCoroutine(WaitSoundFinished());
     }
 

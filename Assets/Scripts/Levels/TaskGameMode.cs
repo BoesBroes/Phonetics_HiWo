@@ -8,9 +8,13 @@ public class TaskGameMode : TaskMain
 {
     //[Header("UI")]
     //public UIManager UI;
+    public GameObject endScreenWin;
+    public GameObject endScreenLose;
+    public GameObject endScreenStale;
 
-    public GameObject beginScreen;
-    public GameObject endScreen;
+    public bool win;
+    public bool lose;
+    public bool stale;
     //public GameObject buttons;
 
     [Header("Tasks")]
@@ -34,8 +38,6 @@ public class TaskGameMode : TaskMain
     public GameObject gameOverPanel;
 
     private bool gameOver = false;
-
-    public Text endText;
 
     private int stringCheckCount;
     private bool stringCheckRunning;
@@ -61,11 +63,6 @@ public class TaskGameMode : TaskMain
         }
         currentTask = tasks[0].GetComponent<TaskMain>();
 
-        if (beginScreen)
-        {
-            beginScreen.SetActive(true);
-        }
-
         StartCoroutine(WaitForVoskLoad());
     }
 
@@ -87,11 +84,6 @@ public class TaskGameMode : TaskMain
         if (!startSoundPlayed && !audioSource.isPlaying)
         {
             startSoundPlayed = true;
-            if (beginScreen)
-            {
-                beginScreen.SetActive(false);
-            }
-
         }
         if (levelFinished && startSoundPlayed)
         {
@@ -194,36 +186,36 @@ public class TaskGameMode : TaskMain
 
     public void CheckSpeechInput(string input)
     {
-        stringCheckCount++;
+        //stringCheckCount++;
 
         //do not check if its a specific type of test for speech evaluation
-        if(currentTask.GetComponent<LevelTask>().wrongWordTask)
-        {
-            if (input.Contains(currentTask.rightInput))
-            {
-                StopCoroutine(WaitForAllStrings());
-                GoToNextTask();
-                stringCheckCount = 0;
-                stringCheckRunning = false;
-            }
-            else if (stringCheckCount == 3)
-            {
-                StopCoroutine(WaitForAllStrings());
-                currentTask.GetComponent<TaskMain>().StartTask();
-                stringCheckCount = 0;
-                stringCheckRunning = false;
-            }
+        //if(currentTask.GetComponent<LevelTask>().wrongWordTask)
+        //{
+        //    if (input.Contains(currentTask.rightInput))
+        //    {
+        //        StopCoroutine(WaitForAllStrings());
+        //        GoToNextTask();
+        //        stringCheckCount = 0;
+        //        stringCheckRunning = false;
+        //    }
+        //    else if (stringCheckCount == 3)
+        //    {
+        //        StopCoroutine(WaitForAllStrings());
+        //        currentTask.GetComponent<TaskMain>().StartTask();
+        //        stringCheckCount = 0;
+        //        stringCheckRunning = false;
+        //    }
 
-            if (!stringCheckRunning)
-            {
-                stringCheckRunning = true;
-                StartCoroutine(WaitForAllStrings());
-            }
-        }
-        else
-        {
-            return;
-        }
+        //    if (!stringCheckRunning)
+        //    {
+        //        stringCheckRunning = true;
+        //        StartCoroutine(WaitForAllStrings());
+        //    }
+        //}
+        //else
+        //{
+        //    return;
+        //}
     }
 
     IEnumerator WaitForAllStrings()
@@ -238,7 +230,7 @@ public class TaskGameMode : TaskMain
         }
     }
 
-    private void EndLevel()
+    public void EndLevel()
     {
 
         foreach (GameObject task in tasks)
@@ -246,17 +238,21 @@ public class TaskGameMode : TaskMain
             task.SetActive(false);
         }
 
-
-        //UI Stuff
-        if (!endScreen)
+        if(win)
         {
-            Debug.LogError("No endscreen set in Gamemode. Won't be displayed!");
-            return;
+            endScreenWin.SetActive(true);
         }
-
+        else if(lose)
+        {
+            endScreenLose.SetActive(true);
+        }
+        else if(stale)
+        {
+            endScreenStale.SetActive(true);
+        }
         else
         {
-            endScreen.SetActive(true);
+            Debug.LogError("no end condition is defined?!");
         }
 
         //if (!UI)

@@ -8,6 +8,20 @@ public class PlacingPieceButton : MonoBehaviour
 
     public GameObject piecesParent;
 
+    //for disabling if its filled
+    public GameObject topRowPosition;
+
+    public void CheckTopPosition(bool last)
+    {
+        if(topRowPosition.GetComponent<PiecePlace>().redPlaced || topRowPosition.GetComponent<PiecePlace>().bluePlaced)
+        {
+            if(last)
+            {
+                ConnectManager.connectManager.StaleMate();
+            }
+            Destroy(gameObject);
+        }
+    }
     public void PlacePiece()
     {
         //place piece
