@@ -7,7 +7,7 @@ public class VoskResultText : MonoBehaviour
     public VoskSpeechToText VoskSpeechToText;
     public Text ResultText;
 
-    public GameObject taskGameMode;
+    //public GameObject taskGameMode;
 
     void Awake()
     {
@@ -31,16 +31,12 @@ public class VoskResultText : MonoBehaviour
             //ResultText.text += result.Phrases[i].Text + " | " + "Confidence: " + result.Phrases[i].Confidence;
             ResultText.text += result.Phrases[i].Text;
         }
-        if (taskGameMode)
+        if (RecognitionManager.recognitionManager)
         {
-            GameObject currentObject = taskGameMode.GetComponent<TaskGameMode>().currentTask.gameObject;
+            RecognitionManager.recognitionManager.attemptsLength = result.Phrases.Length;
             for (int i = 0; i < result.Phrases.Length; i++)
             {
-                if(currentObject == taskGameMode.GetComponent<TaskGameMode>().currentTask.gameObject)
-                {
-                    Debug.Log("test");
-                    taskGameMode.GetComponent<TaskGameMode>().CheckSpeechInput(result.Phrases[i].Text);
-                }
+                RecognitionManager.recognitionManager.RunCheck(result.Phrases[i].Text);
             }
         }
     }

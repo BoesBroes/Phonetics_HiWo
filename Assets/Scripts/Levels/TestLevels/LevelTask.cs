@@ -54,7 +54,6 @@ public class LevelTask : TaskMain
 
         
         runningTask = false;
-        
     }
 
     IEnumerator WaitCoroutine()

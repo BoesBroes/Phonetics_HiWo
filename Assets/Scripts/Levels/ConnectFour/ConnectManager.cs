@@ -22,6 +22,14 @@ public class ConnectManager : TaskMain
     //ints to avoid out of bounds
     private int bounds;
     private int boundsCorrection;
+
+    //used for storing current position, place in row and row
+    private GameObject currentLocation;
+    private int currentRowPlace;
+    private int currentRowNumber;
+
+    private bool turnPlayer = true;
+
     void Awake()
     {
         if(connectManager == null)
@@ -44,10 +52,20 @@ public class ConnectManager : TaskMain
 
     public void CheckRow(GameObject currentPosition, int currentRow, int rowNumber)
     {
-        CheckVertical(currentPosition);
-        CheckHorizontal(currentPosition, currentRow);
-        CheckDiagonal(currentPosition, currentRow, rowNumber);
-        if(!won)
+        currentLocation = currentPosition;
+        currentRowPlace = currentRow;
+        currentRowNumber = rowNumber;
+
+        RecognitionManager.recognitionManager.RecognizeWord(currentPosition, turnPlayer); 
+    }
+
+    public override void Proceed()
+    {
+        base.Proceed();
+        CheckVertical(currentLocation);
+        CheckHorizontal(currentLocation, currentRowPlace);
+        CheckDiagonal(currentLocation, currentRowPlace, currentRowNumber);
+        if (!won)
         {
             SwitchTurn();
         }
@@ -209,6 +227,7 @@ public class ConnectManager : TaskMain
 
             computerTurn.SetActive(true);
 
+            //check for each row if the last position is filled
             if (computerTurn.transform.childCount > 1)
             {
                 for (int i = 0; i < computerTurn.transform.childCount; i++)
@@ -234,6 +253,8 @@ public class ConnectManager : TaskMain
         //TODO: add option for extra real player
         if (computerTurn.activeSelf && computerTurn.transform.childCount > 0)
         {
+            turnPlayer = false;
+
             computerTurn.GetComponent<AITurn>().AIStartturn();
         }
         else if (computerTurn.transform.childCount == 0)
@@ -242,7 +263,11 @@ public class ConnectManager : TaskMain
         }
         else
         {
+            turnPlayer = true;
+
             playerTurn.SetActive(true);
+
+            //check for each row if the last position is filled
             if (playerTurn.transform.childCount > 1)
             {
                 for (int i = 0; i < playerTurn.transform.childCount; i++)
