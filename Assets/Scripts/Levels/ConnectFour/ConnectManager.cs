@@ -30,6 +30,8 @@ public class ConnectManager : TaskMain
 
     private bool turnPlayer = true;
 
+    public AudioClip pieceCollisionSound;
+
     void Awake()
     {
         if(connectManager == null)
@@ -56,7 +58,15 @@ public class ConnectManager : TaskMain
         currentRowPlace = currentRow;
         currentRowNumber = rowNumber;
 
-        RecognitionManager.recognitionManager.RecognizeWord(currentPosition, turnPlayer); 
+        StartCoroutine(CollisionSoundWait());
+    }
+
+    IEnumerator CollisionSoundWait()
+    {
+        gameMode.PlaySound(pieceCollisionSound);
+        yield return new WaitForSeconds(pieceCollisionSound.length);
+
+        RecognitionManager.recognitionManager.RecognizeWord(currentLocation, turnPlayer);
     }
 
     public override void Proceed()

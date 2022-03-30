@@ -178,6 +178,11 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 480028242}
   topRowPosition: {fileID: 1125757583}
+  placeSound:
+  - {fileID: 8300000, guid: 8eec65a65bba32042a6ab3146842ba36, type: 3}
+  - {fileID: 8300000, guid: 438bf29c6af3cb84fb74e4d7f4397a91, type: 3}
+  - {fileID: 8300000, guid: 18307071faba43146813c26ab14b7ab2, type: 3}
+  audioSource: {fileID: 897218335}
 --- !u!114 &61082936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,6 +513,11 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 480028242}
   topRowPosition: {fileID: 1458341142}
+  placeSound:
+  - {fileID: 8300000, guid: 8eec65a65bba32042a6ab3146842ba36, type: 3}
+  - {fileID: 8300000, guid: 438bf29c6af3cb84fb74e4d7f4397a91, type: 3}
+  - {fileID: 8300000, guid: 18307071faba43146813c26ab14b7ab2, type: 3}
+  audioSource: {fileID: 897218335}
 --- !u!114 &107152382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1930,6 +1940,11 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 480028242}
   topRowPosition: {fileID: 1653256063}
+  placeSound:
+  - {fileID: 8300000, guid: 8eec65a65bba32042a6ab3146842ba36, type: 3}
+  - {fileID: 8300000, guid: 438bf29c6af3cb84fb74e4d7f4397a91, type: 3}
+  - {fileID: 8300000, guid: 18307071faba43146813c26ab14b7ab2, type: 3}
+  audioSource: {fileID: 897218335}
 --- !u!114 &370608494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2904,6 +2919,11 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 480028242}
   topRowPosition: {fileID: 1219846422}
+  placeSound:
+  - {fileID: 8300000, guid: 8eec65a65bba32042a6ab3146842ba36, type: 3}
+  - {fileID: 8300000, guid: 438bf29c6af3cb84fb74e4d7f4397a91, type: 3}
+  - {fileID: 8300000, guid: 18307071faba43146813c26ab14b7ab2, type: 3}
+  audioSource: {fileID: 897218335}
 --- !u!114 &451683120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4167,6 +4187,11 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 480028242}
   topRowPosition: {fileID: 663924010}
+  placeSound:
+  - {fileID: 8300000, guid: 8eec65a65bba32042a6ab3146842ba36, type: 3}
+  - {fileID: 8300000, guid: 438bf29c6af3cb84fb74e4d7f4397a91, type: 3}
+  - {fileID: 8300000, guid: 18307071faba43146813c26ab14b7ab2, type: 3}
+  audioSource: {fileID: 897218335}
 --- !u!114 &624120990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4448,6 +4473,8 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 0}
   topRowPosition: {fileID: 0}
+  placeSound: []
+  audioSource: {fileID: 0}
 --- !u!114 &637451095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5238,6 +5265,9 @@ MonoBehaviour:
   startSound: {fileID: 8300000, guid: 49d172c202c88bb4db87288fe237ecf1, type: 3}
   que: {fileID: 8300000, guid: fc84ebe29d123584383596f242d848cf, type: 3}
   tryAgain: {fileID: 8300000, guid: 0df15bcb143bdcf49b77b18f910f9bb7, type: 3}
+  recognizeSound: {fileID: 8300000, guid: e4088c6371e3e8f4297ac8828e1a7b33, type: 3}
+  jingle: {fileID: 8300000, guid: 2e50bf96ac54b3343947dbf0574ea745, type: 3}
+  notRecognized: {fileID: 8300000, guid: c83f325fe12374b408a6e7e4d8e9a627, type: 3}
   attemptsLength: 0
   maxAttempts: 2
 --- !u!1 &802741688
@@ -5559,6 +5589,8 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 0}
   topRowPosition: {fileID: 0}
+  placeSound: []
+  audioSource: {fileID: 0}
 --- !u!114 &867368150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6118,6 +6150,8 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 0}
   topRowPosition: {fileID: 0}
+  placeSound: []
+  audioSource: {fileID: 0}
 --- !u!114 &925899881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6267,6 +6301,11 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 480028242}
   topRowPosition: {fileID: 625648128}
+  placeSound:
+  - {fileID: 8300000, guid: 8eec65a65bba32042a6ab3146842ba36, type: 3}
+  - {fileID: 8300000, guid: 438bf29c6af3cb84fb74e4d7f4397a91, type: 3}
+  - {fileID: 8300000, guid: 18307071faba43146813c26ab14b7ab2, type: 3}
+  audioSource: {fileID: 897218335}
 --- !u!114 &932008486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7286,6 +7325,8 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 0}
   topRowPosition: {fileID: 0}
+  placeSound: []
+  audioSource: {fileID: 0}
 --- !u!114 &1200668781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9640,6 +9681,8 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 0}
   topRowPosition: {fileID: 0}
+  placeSound: []
+  audioSource: {fileID: 0}
 --- !u!114 &1642629958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10292,6 +10335,8 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 0}
   topRowPosition: {fileID: 0}
+  placeSound: []
+  audioSource: {fileID: 0}
 --- !u!114 &1790119181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11092,6 +11137,11 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 480028242}
   topRowPosition: {fileID: 123345298}
+  placeSound:
+  - {fileID: 8300000, guid: 8eec65a65bba32042a6ab3146842ba36, type: 3}
+  - {fileID: 8300000, guid: 438bf29c6af3cb84fb74e4d7f4397a91, type: 3}
+  - {fileID: 8300000, guid: 18307071faba43146813c26ab14b7ab2, type: 3}
+  audioSource: {fileID: 897218335}
 --- !u!114 &1840812935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11566,6 +11616,11 @@ MonoBehaviour:
   playerTwoPiece: {fileID: 6846399564431760327, guid: 7a5cfa926877f2143871d5939f2e167b, type: 3}
   fakePiece: {fileID: 759817132184046932, guid: 9cfe860b17118354e9aa92010b6cf27d, type: 3}
   piecesParent: {fileID: 480028242}
+  placeSound:
+  - {fileID: 8300000, guid: 18307071faba43146813c26ab14b7ab2, type: 3}
+  - {fileID: 8300000, guid: 8eec65a65bba32042a6ab3146842ba36, type: 3}
+  - {fileID: 8300000, guid: 438bf29c6af3cb84fb74e4d7f4397a91, type: 3}
+  audioSource: {fileID: 897218335}
 --- !u!1 &1896598997
 GameObject:
   m_ObjectHideFlags: 0
@@ -12082,6 +12137,8 @@ MonoBehaviour:
   playerOnePiece: {fileID: 5814816096404892128, guid: b26f68c161f5d5f4d98d429aa88bf4c7, type: 3}
   piecesParent: {fileID: 0}
   topRowPosition: {fileID: 0}
+  placeSound: []
+  audioSource: {fileID: 0}
 --- !u!114 &2024255710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12850,6 +12907,7 @@ MonoBehaviour:
   computerTurn: {fileID: 1883190098}
   won: 0
   board: {fileID: 1790245107}
+  pieceCollisionSound: {fileID: 8300000, guid: d9872c968f5153140a01273c7d1f0789, type: 3}
 --- !u!1 &2133408820
 GameObject:
   m_ObjectHideFlags: 0

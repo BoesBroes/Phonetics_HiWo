@@ -13,6 +13,11 @@ public class RecognitionManager : MonoBehaviour
     public AudioClip que;
     public AudioClip tryAgain;
 
+    public AudioClip recognizeSound;
+    public AudioClip jingle;
+
+    public AudioClip notRecognized;
+
     private bool runningRecognition = false;
     private bool recognized = false;
 
@@ -101,7 +106,7 @@ public class RecognitionManager : MonoBehaviour
                     totalAttempts = 0;
                     currentAttempts = 0;
 
-                    Recognized();
+                    StartCoroutine(Recognized());
                     return;
                 }
             }
@@ -112,7 +117,7 @@ public class RecognitionManager : MonoBehaviour
             {
                 totalAttempts = 0;
                 currentAttempts = 0;
-                Recognized();
+                StartCoroutine(NotRecognized());
             }
             else if (currentAttempts == attemptsLength)
             {
@@ -141,10 +146,32 @@ public class RecognitionManager : MonoBehaviour
             gameMode.PlaySound(temp);
             yield return new WaitForSeconds(temp.length);
         }
-        Recognized();
+        EndRecognition();
     }
 
-    private void Recognized()
+
+    IEnumerator Recognized()
+    {
+        gameMode.PlaySound(recognizeSound);
+        yield return new WaitForSeconds(recognizeSound.length);
+
+        gameMode.PlaySound(jingle);
+        yield return new WaitForSeconds(jingle.length);
+
+        //continue to next turn
+        EndRecognition();
+    }
+
+    IEnumerator NotRecognized()
+    {
+        gameMode.PlaySound(notRecognized);
+        yield return new WaitForSeconds(notRecognized.length);
+
+        //continue
+        EndRecognition();
+    }
+
+    private void EndRecognition()
     {
         //if word recognized
         gameMode.currentTask.Proceed();

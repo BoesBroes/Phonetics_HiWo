@@ -14,6 +14,9 @@ public class AITurn : MonoBehaviour
 
     private int max;
 
+    public AudioClip[] placeSound;
+    public AudioSource audioSource;
+
     void Start()
     {
         max = this.transform.childCount - 1;
@@ -87,9 +90,15 @@ public class AITurn : MonoBehaviour
 
     private void PlacePiece()
     {
+        //place at random out of max amount of possibilities
         int ran = Random.Range(0, max);
 
         Instantiate(playerTwoPiece, new Vector3(placeLocations[ran].transform.position.x, placeLocations[ran].transform.position.y, 0), Quaternion.identity, piecesParent.transform);
+
+        //play random plop sound
+        int temp = Random.Range(0, placeSound.Length);
+        audioSource.clip = placeSound[temp];
+        audioSource.Play();
 
         ConnectManager.connectManager.PieceStarted();
     }
