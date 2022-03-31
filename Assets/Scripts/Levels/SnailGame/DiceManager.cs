@@ -1,0 +1,69 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DiceManager : MonoBehaviour
+{
+    public DiceRoller[] diceRoller;
+
+    public string[] results;
+
+    public GameObject buttonObject;
+
+    private int numberOfResults;
+    private int resultOne;
+    private int resultTwo;
+
+    private bool playerTurn;
+    public void ChangePlayerTurn()
+    {
+        if(!buttonObject.activeSelf)
+        {
+            buttonObject.SetActive(true);
+        }
+        else
+        {
+            buttonObject.SetActive(false);
+        }
+    }
+    public void ThrowDice(bool player)
+    {
+        Debug.Log("thrown!");
+
+        playerTurn = player;
+
+        diceRoller[0].RollDice();
+        diceRoller[1].RollDice();
+    }
+
+    public void ThrowResult(int dice, int result)
+    {
+        numberOfResults++;
+
+        Debug.Log("bloop");
+        Debug.Log(numberOfResults);
+
+
+        if (numberOfResults <= 1)
+        {
+            resultOne = result;
+        }
+        else
+        {
+            resultTwo = result;
+
+            if (!playerTurn)
+            {
+                Debug.Log("AI");
+                SnailTask.snailTask.AIDecision(resultOne, resultTwo);
+            }
+            else
+            {
+                Debug.Log("player");
+                SnailTask.snailTask.ActivateButtons(resultOne, resultTwo);
+            }
+            numberOfResults = 0;
+        }
+
+    }
+}
