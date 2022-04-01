@@ -44,7 +44,7 @@ public class DiceRoller : MonoBehaviour
 
     private void Result(bool final)
     {
-        int temp = Random.Range(0, 5);
+        int temp = Random.Range(0, 6);
 
         //for ease of use, in same order as the board
         switch (temp)

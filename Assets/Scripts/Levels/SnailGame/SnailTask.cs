@@ -14,7 +14,13 @@ public class SnailTask : TaskMain
     //public int diceOneResult;
     //public int diceTwoResult;
 
+    //for throwing dice
     public DiceManager diceManager;
+    //for showing words
+    public WordRepeater wordRepeater;
+    //the win screen
+    public ColorWin colorWin;
+
 
     void Awake()
     {
@@ -87,27 +93,32 @@ public class SnailTask : TaskMain
         {
             diceManager.ChangePlayerTurn();
         }
+        else if (turnCount == 1)
+        {
+            wordRepeater.StartWord();
+        }
         else
         {
             diceManager.ThrowDice(false);
         }
     }
 
+    public override void Proceed()
+    {
+        base.Proceed();
+        wordRepeater.StopWord();
+        diceManager.ThrowDice(false);
+    }
+
     public void CheckWin(int positionNumber, int player)
     {
         if(positionNumber == 24)
         {
-            if(player == 0)
-            {
-                //win override
-                gameMode.EndLevel();
+            //a color always wins
+            colorWin.ChangeText(player);
 
-            }
-            else
-            {
-                //lose override
-                gameMode.EndLevel();
-            }
+            gameMode.win = true;
+            gameMode.EndLevel();
         }
         else
         {

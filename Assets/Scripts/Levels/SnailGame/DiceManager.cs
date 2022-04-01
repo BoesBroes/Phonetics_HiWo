@@ -40,10 +40,6 @@ public class DiceManager : MonoBehaviour
     {
         numberOfResults++;
 
-        Debug.Log("bloop");
-        Debug.Log(numberOfResults);
-
-
         if (numberOfResults <= 1)
         {
             resultOne = result;
