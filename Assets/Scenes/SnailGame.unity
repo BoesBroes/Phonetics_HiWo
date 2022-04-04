@@ -3210,10 +3210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ff183ca799b5646b746ed6daddfe80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startWithMenuOpen: 1
+  startWithMenuOpen: 0
   allPanels:
-  - {fileID: 0}
-  startPanel: {fileID: 0}
+  - {fileID: 1526061214}
+  startPanel: {fileID: 1526061214}
 --- !u!114 &409466426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3436,8 +3436,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   words:
-  - kaas
-  - help
+  - modder
+  - afdrogen
+  - bibberen
+  - drijfnat
+  - verkouden
+  - verwarming
+  - winterjas
+  - opdrogen
+  - groen
+  - zwembroek
+  - caravan
+  - drinken
+  - eekhoorn
+  - koffer
+  - motorboot
+  - omrijden
+  - parkeren
+  - reizen
+  - rivier
+  - rondrijden
+  - teruggaan
+  - terugrijden
+  - treinkaartje
+  - verkeer
+  - warmte
+  - ooievaar
+  - pretpark
+  - zomer
+  - dierentuin
+  - hert
+  - kinderboerderij
+  - krokodil
+  - poort
+  - tijger
+  - achterpoot
+  - giraffe
+  - kangoeroe
+  - zebra
   wordImage: {fileID: 1819141877}
   wordObject: {fileID: 415273922}
 --- !u!1 &422794984
