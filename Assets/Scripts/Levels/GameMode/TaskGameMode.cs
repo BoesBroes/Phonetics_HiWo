@@ -12,9 +12,11 @@ public class TaskGameMode : TaskMain
     public GameObject endScreenLose;
     public GameObject endScreenStale;
 
+    //really its more efficient to send this information directly to a function but time
     public bool win;
     public bool lose;
     public bool stale;
+
     //public GameObject buttons;
 
     [Header("Tasks")]
@@ -45,6 +47,11 @@ public class TaskGameMode : TaskMain
 
     //the result text used to make clear its loading (for speech recognition test)
     public Text resultText;
+
+    //used to calculate end results/progress bar
+    public int attempts;
+    public int rightAttempts;
+    private float accuracy;
 
     void Start()
     {
@@ -232,6 +239,8 @@ public class TaskGameMode : TaskMain
 
     public void EndLevel()
     {
+        accuracy = rightAttempts / attempts;
+
 
         foreach (GameObject task in tasks)
         {
@@ -241,14 +250,17 @@ public class TaskGameMode : TaskMain
         if(win)
         {
             endScreenWin.SetActive(true);
+            endScreenWin.GetComponent<ChangeSlider>().SliderChange(accuracy);
         }
         else if(lose)
         {
             endScreenLose.SetActive(true);
+            endScreenLose.GetComponent<ChangeSlider>().SliderChange(accuracy);
         }
         else if(stale)
         {
             endScreenStale.SetActive(true);
+            endScreenStale.GetComponent<ChangeSlider>().SliderChange(accuracy);
         }
         else
         {
@@ -270,6 +282,7 @@ public class TaskGameMode : TaskMain
         //}
     }
 
+    //simple function to play any sound
     public void PlaySound(AudioClip audio)
     {
         audioSource.Stop();

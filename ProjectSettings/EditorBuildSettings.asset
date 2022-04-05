@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelTemplate.unity
     guid: 01fe59ee3bd604342be70e994613fd7a
+  - enabled: 1
+    path: Assets/Scenes/SnailGame.unity
+    guid: b92cf3e1580a21d40b5beac1adec57bf
+  - enabled: 1
+    path: Assets/Scenes/ConnectFour.unity
+    guid: b5897232e0342ed4387d04c0e749998c
   m_configObjects: {}

@@ -107,12 +107,18 @@ public class RecognitionManager : MonoBehaviour
                     currentAttempts = 0;
 
                     StartCoroutine(Recognized());
+
+                    gameMode.attempts++;
+                    gameMode.rightAttempts++;
+
                     return;
                 }
             }
             //if word not recognized
             totalAttempts++;
             currentAttempts++;
+            gameMode.attempts++;
+
             if ((totalAttempts / attemptsLength) >= maxAttempts)
             {
                 totalAttempts = 0;

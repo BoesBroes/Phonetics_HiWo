@@ -9,7 +9,7 @@ public class ConnectManager : TaskMain
 
     public static ConnectManager connectManager;
 
-    public bool won = false;
+    private bool won = false;
 
     public GameObject board;
 
@@ -31,6 +31,8 @@ public class ConnectManager : TaskMain
     private bool turnPlayer = true;
 
     public AudioClip pieceCollisionSound;
+
+    public WordImage wordImage;
 
     void Awake()
     {
@@ -54,6 +56,7 @@ public class ConnectManager : TaskMain
 
     public void CheckRow(GameObject currentPosition, int currentRow, int rowNumber)
     {
+        //store each location relative to current location in row, row in width and height respectively
         currentLocation = currentPosition;
         currentRowPlace = currentRow;
         currentRowNumber = rowNumber;
@@ -66,12 +69,21 @@ public class ConnectManager : TaskMain
         gameMode.PlaySound(pieceCollisionSound);
         yield return new WaitForSeconds(pieceCollisionSound.length);
 
+        //show image on screen
+        wordImage.gameObject.SetActive(true);
+        wordImage.FindImage(currentLocation.GetComponent<WordObject>().word[0]);
+
         RecognitionManager.recognitionManager.RecognizeWord(currentLocation, turnPlayer);
     }
 
     public override void Proceed()
     {
         base.Proceed();
+
+        //remove image on screen
+        wordImage.gameObject.SetActive(false);
+
+        //check each location
         CheckVertical(currentLocation);
         CheckHorizontal(currentLocation, currentRowPlace);
         CheckDiagonal(currentLocation, currentRowPlace, currentRowNumber);
@@ -86,7 +98,7 @@ public class ConnectManager : TaskMain
         GameObject currentRow = currentPosition.transform.parent.gameObject;
         GameObject[] places = currentRow.GetComponent<RowManager>().rowPosition;
 
-        CheckPlaces(places);
+        CheckPlaces(places, false);
     }
 
 
@@ -99,7 +111,7 @@ public class ConnectManager : TaskMain
             places[i] = board.transform.GetChild(i).gameObject.GetComponent<RowManager>().rowPosition[currentRow];
         }
 
-        CheckPlaces(places);
+        CheckPlaces(places, false);
     }
 
     private void CheckDiagonal(GameObject currentPosition, int currentRowCount, int rowNumber)
@@ -130,7 +142,7 @@ public class ConnectManager : TaskMain
             {
             }
         }
-        CheckPlaces(places);
+        CheckPlaces(places, true);
 
         places = new GameObject[6];
 
@@ -159,13 +171,13 @@ public class ConnectManager : TaskMain
             }
 
         }
-        CheckPlaces(places);
+        CheckPlaces(places, true);
 
     }
 
-    private void CheckPlaces(GameObject[] places)
+    private void CheckPlaces(GameObject[] places, bool checkingDiagonal)
     {
-        if(diagonalCount >= 0)
+        if(diagonalCount >= 0 && checkingDiagonal)
         {
             //shorten places array
             GameObject[] temp = places;
@@ -177,24 +189,34 @@ public class ConnectManager : TaskMain
         }
         for (int i = 0; i < places.Length; i++)
         {
+            //check which one is placed at x position
+            //if red is placed + check if last was blue
             if (places[i].GetComponent<PiecePlace>().redPlaced && blueRowCount == 0)
             {
                 redRowCount++;
             }
-            if (places[i].GetComponent<PiecePlace>().redPlaced && blueRowCount > 0)
+            else if (places[i].GetComponent<PiecePlace>().redPlaced && blueRowCount > 0)
             {
                 blueRowCount = 0;
                 redRowCount++;
             }
 
-            if (places[i].GetComponent<PiecePlace>().bluePlaced && redRowCount == 0)
+            //if blue is placed + check if last was red
+            else if (places[i].GetComponent<PiecePlace>().bluePlaced && redRowCount == 0)
             {
                 blueRowCount++;
             }
-            if (places[i].GetComponent<PiecePlace>().bluePlaced && redRowCount > 0)
+            else if (places[i].GetComponent<PiecePlace>().bluePlaced && redRowCount > 0)
             {
                 redRowCount = 0;
                 blueRowCount++;
+            }
+
+            //if none are placed
+            else
+            {
+                redRowCount = 0;
+                blueRowCount = 0;
             }
 
             if (redRowCount == 4)
@@ -203,6 +225,7 @@ public class ConnectManager : TaskMain
                 Debug.Log("insert winning condition");
                 gameMode.lose = true;
                 gameMode.EndLevel();
+                this.gameObject.SetActive(false);
             }
             if (blueRowCount == 4)
             {
@@ -210,10 +233,11 @@ public class ConnectManager : TaskMain
                 Debug.Log("insert winning condition");
                 gameMode.win = true;
                 gameMode.EndLevel();
+                this.gameObject.SetActive(false);
             }
         }
 
-        if(diagonalCount >= 0)
+        if(diagonalCount >= 0 && checkingDiagonal)
         {
             diagonalCount = -1;
         }
