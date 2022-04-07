@@ -49,8 +49,8 @@ public class TaskGameMode : TaskMain
     public Text resultText;
 
     //used to calculate end results/progress bar
-    public int attempts;
-    public int rightAttempts;
+    public float attempts;
+    public float rightAttempts;
     private float accuracy;
 
     void Start()
@@ -143,21 +143,6 @@ public class TaskGameMode : TaskMain
         GoToNextTask();
     }
 
-    private void ChangeColor(Image sliderFill, float value, bool anger)
-    {
-        if (anger)
-        {
-            Color statsColor = new Color(value, 1 -value, 0, 1);
-            sliderFill.color = statsColor;
-        }
-        else
-        {
-            Color statsColor = new Color(1 - value, value, 0, 1);
-            sliderFill.color = statsColor;
-        }
-
-    }
-
     private void GoToNextTask()
     {
         //only need taskindex, else object references dont work
@@ -241,6 +226,7 @@ public class TaskGameMode : TaskMain
     {
         accuracy = rightAttempts / attempts;
 
+        Debug.Log(accuracy);
 
         foreach (GameObject task in tasks)
         {
