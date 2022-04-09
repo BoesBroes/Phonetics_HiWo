@@ -10,8 +10,12 @@ public class ShowImage : MonoBehaviour
     public string word;
 
     public Image wordImage;
+
+    public AudioClip cardTurn;
+
     public void CheckImage()
     {
+
         //add if 2 images are shown 
         if (MemoryManager.memoryManager.clicks < 2 && MemoryManager.memoryManager.playerTurn)
         {
@@ -31,7 +35,7 @@ public class ShowImage : MonoBehaviour
 
             cardImage.SetActive(true);
 
-            MemoryManager.memoryManager.ImageClicked(this);
+            StartCoroutine(WaitForSound(false));
         }
     }
 
@@ -53,11 +57,28 @@ public class ShowImage : MonoBehaviour
 
         cardImage.SetActive(true);
 
-        MemoryManager.memoryManager.ImageClickedAI(this);
+        StartCoroutine(WaitForSound(true));
     }
 
     public void DisableImage()
     {
         cardImage.SetActive(false);
+    }
+
+    IEnumerator WaitForSound(bool AI)
+    {
+        MemoryManager.memoryManager.gameMode.PlaySound(cardTurn);
+
+        yield return new WaitForSeconds(cardTurn.length);
+
+        if(AI)
+        {
+            MemoryManager.memoryManager.ImageClickedAI(this);
+        }
+        else
+        {
+            MemoryManager.memoryManager.ImageClicked(this);
+
+        }
     }
 }

@@ -65,7 +65,7 @@ public class DiceRoller : MonoBehaviour
                 thisImage.color = Color.green;
                 break;
             case 5:
-                thisImage.color = Color.black; //find orange here
+                thisImage.color = new Color(1f, .64f, 0f); 
                 break;
         }
 

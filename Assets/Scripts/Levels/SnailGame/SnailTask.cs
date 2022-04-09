@@ -21,7 +21,7 @@ public class SnailTask : TaskMain
     //the win screen
     public ColorWin colorWin;
 
-
+    public AudioClip walkScrape;
     void Awake()
     {
         if (snailTask == null)
@@ -82,8 +82,6 @@ public class SnailTask : TaskMain
 
     public void NextTurn()
     {
-        DeactivateAllButtons();
-
         turnCount++;
         if(turnCount > 5)
         {
@@ -112,7 +110,7 @@ public class SnailTask : TaskMain
 
     public void CheckWin(int positionNumber, int player)
     {
-        if(positionNumber == 24)
+        if(positionNumber == 12)
         {
             //a color always wins
             colorWin.ChangeText(player);
@@ -124,5 +122,10 @@ public class SnailTask : TaskMain
         {
             NextTurn();
         }
+    }
+
+    public void PlaySoundWalk(AudioClip clip)
+    {
+        gameMode.PlaySound(clip);
     }
 }

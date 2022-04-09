@@ -17,6 +17,8 @@ public class TrackManager : MonoBehaviour
     private int currentPosition = 0;
 
     private int steps = 1;
+
+    public AudioClip scrapeSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +33,29 @@ public class TrackManager : MonoBehaviour
 
     public void MovePiece(bool extra)
     {
+        SnailTask.snailTask.DeactivateAllButtons();
+
         //if AI has 2 of the same colors
-        if(extra)
+        if (extra)
         {
             steps = 2;
         }
         currentPosition += steps;
+
+        SnailTask.snailTask.PlaySoundWalk(scrapeSound);
+
+        StartCoroutine(WaitForWalkSOund());
+    }
+
+    IEnumerator WaitForWalkSOund()
+    {
+        //make the movement and sound little more in sync
+        yield return new WaitForSeconds(.5f);
+
         StartCoroutine(MoveToPlace(positions[currentPosition].transform));
 
+        //wait for sound to finish before playing next sound
+        yield return new WaitForSeconds(SnailTask.snailTask.walkScrape.length);
         SnailTask.snailTask.CheckWin(currentPosition, colorInt);
     }
 

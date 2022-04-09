@@ -226,8 +226,6 @@ public class TaskGameMode : TaskMain
     {
         accuracy = rightAttempts / attempts;
 
-        Debug.Log(accuracy);
-
         foreach (GameObject task in tasks)
         {
             task.SetActive(false);

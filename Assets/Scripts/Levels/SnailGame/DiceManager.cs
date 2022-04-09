@@ -15,6 +15,9 @@ public class DiceManager : MonoBehaviour
     private int resultTwo;
 
     private bool playerTurn;
+
+    public AudioClip diceRoll;
+    public AudioClip diceResult;
     public void ChangePlayerTurn()
     {
         if(!buttonObject.activeSelf)
@@ -28,6 +31,8 @@ public class DiceManager : MonoBehaviour
     }
     public void ThrowDice(bool player)
     {
+        SnailTask.snailTask.gameMode.PlaySound(diceRoll);
+
         Debug.Log("thrown!");
 
         playerTurn = player;
@@ -43,6 +48,7 @@ public class DiceManager : MonoBehaviour
         if (numberOfResults <= 1)
         {
             resultOne = result;
+            SnailTask.snailTask.gameMode.PlaySound(diceResult);
         }
         else
         {

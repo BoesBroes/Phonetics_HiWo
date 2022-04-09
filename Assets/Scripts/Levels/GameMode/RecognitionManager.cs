@@ -18,10 +18,10 @@ public class RecognitionManager : MonoBehaviour
 
     public AudioClip notRecognized;
 
-    private bool runningRecognition = false;
+    //private bool runningRecognition = false;
     private bool recognized = false;
 
-    //used to check how many answers are right
+    //used to check determine how many results may be recognized (is set from voskresulttext)
     public int attemptsLength;
 
     public int maxAttempts = 2;
@@ -89,7 +89,7 @@ public class RecognitionManager : MonoBehaviour
         Debug.Log("Stoprecording");
         VoskSpeechToText.voskSpeechToText.VoiceProcessor.StopRecording();
 
-        runningRecognition = false;
+        //runningRecognition = false;
     }
 
     public void RunCheck(string result)

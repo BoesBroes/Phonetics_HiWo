@@ -26,6 +26,10 @@ public class MemoryManager : TaskMain
 
     public bool playerTurn;
 
+    private int cardCount;
+
+    private int[] cardAIFlipCount;
+
     void Awake()
     {
         if (memoryManager == null)
@@ -43,6 +47,8 @@ public class MemoryManager : TaskMain
     public override void StartTask()
     {
         playerTurn = true;
+
+        cardAIFlipCount = new int[2];
 
         currentImageObjects = new ShowImage[2];
 
@@ -113,7 +119,13 @@ public class MemoryManager : TaskMain
     {
         if (currentImageObjects[0].word == currentImageObjects[1].word)
         {
+            //increase score and add extra card to make it go to the next turn in Proceed
             score++;
+            cardCount++;
+            Proceed();
+        }
+        else
+        {
             if (playerTurn)
             {
                 repeatMemory.StartWordPlayer(currentImageObjects[0].word, currentImageObjects[0].wordImage);
@@ -122,11 +134,7 @@ public class MemoryManager : TaskMain
             {
                 repeatMemory.StartWordAI(currentImageObjects[0].word, currentImageObjects[0].wordImage);
             }
-        }
-        else
-        {
-            //sound here 
-            StartCoroutine(ShowImagesTime(5));
+
 
         }
     }
@@ -135,39 +143,57 @@ public class MemoryManager : TaskMain
     {
         base.Proceed();
 
+        cardCount++;
+
         //play a sound or two here before starting the coroutine
 
         repeatMemory.DisableImage();
 
-        cardsLeft -= 2;
-
-        if (cardsLeft > 0)
+        if (cardCount == 2)
         {
+            cardCount = 0;
 
-            if (playerTurn)
+            cardsLeft -= 2;
+
+            if (cardsLeft > 0)
             {
-                StartCoroutine(ShowImagesTime(2.5f));
+
+                if (playerTurn)
+                {
+                    StartCoroutine(ShowImagesTime(2.5f));
+                }
+                else
+                {
+                    StartCoroutine(ShowImagesTime(5f));
+                }
             }
             else
             {
-                StartCoroutine(ShowImagesTime(5f));
+                if (score > aiScore)
+                {
+                    gameMode.win = true;
+                }
+                else if (score == aiScore)
+                {
+                    gameMode.stale = true;
+                }
+                else
+                {
+                    gameMode.lose = true;
+                }
+                gameMode.EndLevel();
             }
         }
         else
         {
-            if(score > aiScore)
+            if (playerTurn)
             {
-                gameMode.win = true;
-            }
-            else if(score == aiScore)
-            {
-                gameMode.stale = true;
+                repeatMemory.StartWordPlayer(currentImageObjects[1].word, currentImageObjects[1].wordImage);
             }
             else
             {
-                gameMode.lose = true;
+                repeatMemory.StartWordAI(currentImageObjects[1].word, currentImageObjects[1].wordImage);
             }
-            gameMode.EndLevel();
         }
     }
 
@@ -220,8 +246,21 @@ public class MemoryManager : TaskMain
 
         for (int i = 0; i < 2; i++)
         {
-            board.transform.GetChild(listNumbers[i]).GetComponent<ShowImage>().AICheckImage();
+            cardAIFlipCount[i] = listNumbers[i];
+
+            //board.transform.GetChild(listNumbers[i]).GetComponent<ShowImage>().AICheckImage();
         }
+
+        StartCoroutine(AIFlipTime());
+    }
+
+    IEnumerator AIFlipTime()
+    {
+        board.transform.GetChild(cardAIFlipCount[0]).GetComponent<ShowImage>().AICheckImage();
+
+        yield return new WaitForSeconds(1);
+
+        board.transform.GetChild(cardAIFlipCount[1]).GetComponent<ShowImage>().AICheckImage();
     }
 
     public void ImageClickedAI(ShowImage imageObject)
