@@ -10,6 +10,7 @@ public class TalkTask : TaskMain
     // Start is called before the first frame update
     public override void StartTask()
     {
+        //already show next task (doesnt start it yet)
         gameMode.PlaySound(startSound);
         StartCoroutine(WaitSoundFinished());
     }
@@ -17,6 +18,6 @@ public class TalkTask : TaskMain
     IEnumerator WaitSoundFinished()
     {
         yield return new WaitForSeconds(startSound.length + 1.5f);
-        gameMode.GetComponent<TaskGameMode>().TaskFinished();
+        gameMode.TaskFinished();
     }
 }

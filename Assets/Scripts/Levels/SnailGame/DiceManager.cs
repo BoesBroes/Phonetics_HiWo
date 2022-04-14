@@ -33,8 +33,6 @@ public class DiceManager : MonoBehaviour
     {
         SnailTask.snailTask.gameMode.PlaySound(diceRoll);
 
-        Debug.Log("thrown!");
-
         playerTurn = player;
 
         diceRoller[0].RollDice();
@@ -56,12 +54,10 @@ public class DiceManager : MonoBehaviour
 
             if (!playerTurn)
             {
-                Debug.Log("AI");
                 SnailTask.snailTask.AIDecision(resultOne, resultTwo);
             }
             else
             {
-                Debug.Log("player");
                 SnailTask.snailTask.ActivateButtons(resultOne, resultTwo);
             }
             numberOfResults = 0;

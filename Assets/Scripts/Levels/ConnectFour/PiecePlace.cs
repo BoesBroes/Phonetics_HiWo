@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PiecePlace : MonoBehaviour
 {
-    private float speed = .1f;
-    private float distance = -.1f;
+    private float speed = .25f;
+    private float distance = -1f;
 
     public bool redPlaced;
     public bool bluePlaced;

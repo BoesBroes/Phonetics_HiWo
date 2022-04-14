@@ -5,7 +5,7 @@ using UnityEngine;
 public class TrackManager : MonoBehaviour
 {
     public float speed = 0.5f;
-    private float distance = 0.5f;
+    private float distance = 1f;
 
     public int colorInt;
     public GameObject buttonObject;
@@ -17,6 +17,8 @@ public class TrackManager : MonoBehaviour
     private int currentPosition = 0;
 
     private int steps = 1;
+
+    private float timeElapsed;
 
     public AudioClip scrapeSound;
     // Start is called before the first frame update
@@ -61,9 +63,11 @@ public class TrackManager : MonoBehaviour
 
     IEnumerator MoveToPlace(Transform destination)
     {
+        timeElapsed = 0;
         while (destination.position.x - piece.transform.position.x < distance)
         {
-            piece.transform.position = Vector3.Lerp(piece.transform.position, destination.position, speed);
+            piece.transform.position = Vector3.Lerp(piece.transform.position, destination.position, timeElapsed / speed);
+            timeElapsed = Time.fixedDeltaTime;
             yield return null;
         }
         piece.transform.position = destination.position;

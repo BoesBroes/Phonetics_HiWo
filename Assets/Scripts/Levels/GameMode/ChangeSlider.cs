@@ -36,7 +36,7 @@ public class ChangeSlider : MonoBehaviour
         {
             slider.value = Mathf.Lerp(slider.value, accuracy, timeElapsed / slideSpeed);
 
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.fixedDeltaTime;
 
             Color statsColor = new Color(1 - slider.value, slider.value, 0, 1);
 

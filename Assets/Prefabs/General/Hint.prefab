@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f032c5e111b89a41884453b926d6e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisImage: {fileID: 5351666488243972132}
   gameMode: {fileID: 0}
   hint: {fileID: 8300000, guid: 7cfcd61987d06b548b07ebce38248ef2, type: 3}
   objectHighlight:
@@ -118,6 +119,7 @@ MonoBehaviour:
   - {fileID: 0}
   sizeIncrease: 1.1
   speed: 1
+  waitMaxSizeTime: 2
 --- !u!114 &5351666488243972134
 MonoBehaviour:
   m_ObjectHideFlags: 0

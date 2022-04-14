@@ -61,51 +61,61 @@ public class TaskGameMode : TaskMain
         //clear the list and create a new list with all objects containing TaskMain under task gameobject
         tasks.Clear();
 
-        TaskMain[] allChildren = taskParent.GetComponentsInChildren<TaskMain>();
-        foreach (TaskMain child in allChildren)
+        if(taskParent != null)
         {
-            tasks.Add(child.gameObject);
-            child.gameMode = this;
-            child.gameObject.SetActive(false);
-        }
-        currentTask = tasks[0].GetComponent<TaskMain>();
+            TaskMain[] allChildren = taskParent.GetComponentsInChildren<TaskMain>();
+            foreach (TaskMain child in allChildren)
+            {
+                tasks.Add(child.gameObject);
+                child.gameMode = this;
+                child.gameObject.SetActive(false);
+            }
+            currentTask = tasks[0].GetComponent<TaskMain>();
+            currentTask.gameObject.SetActive(true);
 
-        StartCoroutine(WaitForVoskLoad());
+            currentTask.StartTask();
+
+            StartCoroutine(WaitForVoskLoad());
+        }
+
+        
     }
 
     IEnumerator WaitForVoskLoad()
     {
         resultText.text = "loading..";
         //wait until vosk has the model loaded to activate the first task
+        //I know how this looks, just want a quick and ez loading screen
+        yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText.loadFloat >= .2f);
+        currentTask.StartTask();
+
+        yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText.loadFloat >= .4f);
+        currentTask.StartTask();
+
+        yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText.loadFloat >= .6f);
+        currentTask.StartTask();
+
+        yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText.loadFloat >= .8f);
+        currentTask.StartTask();
+
+        yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText.loadFloat == 1);
+
         yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText._didInit == true);
-        //might fix crash on first try with build?
+
         yield return new WaitForSeconds(1f);
         currentTask.gameObject.SetActive(true);
-        currentTask.StartTask();
+        //currentTask.StartTask();
         resultText.text = "loaded!";
     }
 
-    private void Update()
-    {
-        //start the game if the start sound has been played and the sound stopped playing
-        if (!startSoundPlayed && !audioSource.isPlaying)
-        {
-            startSoundPlayed = true;
-        }
-        if (levelFinished && startSoundPlayed)
-        {
-            if (!audioSource.isPlaying)
-            {
-                LevelManager.levelManager.LoadLastLevel();
-            }
-        }
-
-        if(!gameOver)
-        {
-            currentTask.gameObject.SetActive(true);
-            //currentTask.StartTask();
-        }    
-    }
+    //private void Update()
+    //{
+    //    if(!gameOver)
+    //    {
+    //        //currentTask.gameObject.SetActive(true);
+    //        //currentTask.StartTask();
+    //    }    
+    //}
 
     public void StartGame()
     {
@@ -272,5 +282,22 @@ public class TaskGameMode : TaskMain
         audioSource.Stop();
         audioSource.clip = audio;
         audioSource.Play();
+    }
+
+    //shouldve done this earlier
+    public void StartMultipleSounds(AudioClip[] audio)
+    {
+        StartCoroutine(PlayMultipleSounds(audio));
+    }
+
+    IEnumerator PlayMultipleSounds(AudioClip[] audio)
+    {
+        for(int i = 0; i < audio.Length; i++)
+        {
+            audioSource.Stop();
+            audioSource.clip = audio[i];
+            audioSource.Play();
+            yield return new WaitForSeconds(audio[i].length);
+        }
     }
 }

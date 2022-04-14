@@ -5,31 +5,38 @@ using UnityEngine.UI;
 
 public class Hint : MonoBehaviour
 {
+    public Image thisImage;
+
     public TaskGameMode gameMode;
 
     public AudioClip hint;
-
     private bool waitPlay;
 
     public GameObject[] objectHighlight;
     private Vector2[] currentVector;
 
     public float sizeIncrease;
-
     public float speed;
-
     public float waitMaxSizeTime = 2;
-
     private Vector2 currentIncrease;
 
     private float timeElapsed;
 
     private Color[] color;
-
     private Image[] imageColor;
 
     void Start()
     {
+        if(PlayerPrefs.GetString("character") != "")
+        {
+            thisImage.sprite = Resources.Load<Sprite>("Image/" + PlayerPrefs.GetString("character"));
+        }
+        else
+        {
+            thisImage.sprite = Resources.Load<Sprite>("Image/pinguin");
+        }
+        thisImage.preserveAspect = true;
+
         currentVector = new Vector2[objectHighlight.Length];
         color = new Color[objectHighlight.Length];
         imageColor = new Image[objectHighlight.Length];
@@ -50,10 +57,7 @@ public class Hint : MonoBehaviour
 
             gameMode.PlaySound(hint);
 
-            if(objectHighlight[0].activeSelf)
-            {
-                StartCoroutine(HighLightObjects());
-            }
+            StartCoroutine(HighLightObjects());
         }
         else if (waitPlay == false)
         {
@@ -79,12 +83,29 @@ public class Hint : MonoBehaviour
         {
             for(int i = 0; i < objectHighlight.Length; i++)
             {
-                objectHighlight[i].transform.localScale = Vector2.Lerp(currentVector[i], new Vector2(currentVector[i].x * sizeIncrease, currentVector[i].y * sizeIncrease), timeElapsed / speed);
-                imageColor[i].color = Color.Lerp(color[i], Color.yellow, timeElapsed / speed);
+                if (objectHighlight[i].activeSelf)
+                {
+                    objectHighlight[i].transform.localScale = Vector2.Lerp(currentVector[i], new Vector2(currentVector[i].x * sizeIncrease, currentVector[i].y * sizeIncrease), timeElapsed / speed);
+                    imageColor[i].color = Color.Lerp(color[i], Color.yellow, timeElapsed / speed);
+                }
             }
 
-            currentIncrease.x = objectHighlight[0].transform.localScale.x / currentVector[0].x;
-            timeElapsed += Time.deltaTime;
+            //check the first object thats active, return if none are active
+            for (int i = 0; i < objectHighlight.Length; i++)
+            {
+                if(objectHighlight[i].activeSelf)
+                {
+                    currentIncrease.x = objectHighlight[i].transform.localScale.x / currentVector[i].x;
+                    break;
+                }
+                else if(i == objectHighlight.Length)
+                {
+                    yield return null;
+                }
+            }
+
+
+            timeElapsed += Time.fixedDeltaTime;
 
             yield return null;
         }
@@ -97,18 +118,42 @@ public class Hint : MonoBehaviour
 
         timeElapsed = 0;
 
-        while (currentVector[0].x < objectHighlight[0].transform.localScale.x)
+        //the current divided by the original is 1
+        while (currentIncrease.x > 1)
         {
             for (int i = 0; i < objectHighlight.Length; i++)
             {
-                objectHighlight[i].transform.localScale = Vector2.Lerp(new Vector2(currentVector[i].x * sizeIncrease, currentVector[i].y * sizeIncrease), currentVector[i], timeElapsed / speed);
-                imageColor[i].color = Color.Lerp(Color.yellow, color[i], timeElapsed / speed);
+                if (objectHighlight[i].activeSelf)
+                {
+                    objectHighlight[i].transform.localScale = Vector2.Lerp(new Vector2(currentVector[i].x * sizeIncrease, currentVector[i].y * sizeIncrease), currentVector[i], timeElapsed / speed);
+                    imageColor[i].color = Color.Lerp(Color.yellow, color[i], timeElapsed / speed);
+                }
             }
 
-            currentIncrease.x = objectHighlight[0].transform.localScale.x / currentVector[0].x;
-            timeElapsed += Time.deltaTime;
+            //check the first object thats active, return if none are active
+            for (int i = 0; i < objectHighlight.Length; i++)
+            {
+                if (objectHighlight[i].activeSelf)
+                {
+                    currentIncrease.x = objectHighlight[i].transform.localScale.x / currentVector[i].x;
+                    break;
+                }
+                else if (i == objectHighlight.Length)
+                {
+                    yield return null;
+                }
+            }
+
+
+            timeElapsed += Time.fixedDeltaTime;
 
             yield return null;
+        }
+
+        //as long as they return to normal (max size doesnt necesarrily need this)
+        for (int i = 0; i < objectHighlight.Length; i++)
+        {
+            objectHighlight[i].transform.localScale = currentVector[i];
         }
 
         waitPlay = false;

@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class WordImage : MonoBehaviour
 {
-    
+
+
     public void FindImage(string word)
     {
+
         //dont forget to set new images as sprites in editor!
         if (Resources.Load<Sprite>("Image/" + word))
         {
@@ -19,6 +21,7 @@ public class WordImage : MonoBehaviour
         }
 
         this.GetComponent<Image>().SetNativeSize();
+
     }
 }
 

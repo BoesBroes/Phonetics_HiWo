@@ -157,15 +157,7 @@ public class MemoryManager : TaskMain
 
             if (cardsLeft > 0)
             {
-
-                if (playerTurn)
-                {
                     StartCoroutine(ShowImagesTime(2.5f));
-                }
-                else
-                {
-                    StartCoroutine(ShowImagesTime(5f));
-                }
             }
             else
             {
@@ -192,9 +184,16 @@ public class MemoryManager : TaskMain
             }
             else
             {
-                repeatMemory.StartWordAI(currentImageObjects[1].word, currentImageObjects[1].wordImage);
+                StartCoroutine(WaitForNextRepeat());
             }
         }
+    }
+
+    //just a simple wait thing
+    IEnumerator WaitForNextRepeat()
+    {
+        yield return new WaitForSeconds(1);
+        repeatMemory.StartWordAI(currentImageObjects[1].word, currentImageObjects[1].wordImage);
     }
 
     IEnumerator ShowImagesTime(float time)
