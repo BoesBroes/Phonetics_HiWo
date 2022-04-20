@@ -9,7 +9,7 @@ public class Hint : MonoBehaviour
 
     public TaskGameMode gameMode;
 
-    public AudioClip hint;
+    public AudioClip hintClip;
     private bool waitPlay;
 
     public GameObject[] objectHighlight;
@@ -49,13 +49,24 @@ public class Hint : MonoBehaviour
         }
     }
 
+    //innefficient, use list next time
+    public void ReFindColors()
+    {
+        for (int i = 0; i < objectHighlight.Length; i++)
+        {
+            currentVector[i] = objectHighlight[i].transform.localScale;
+            color[i] = objectHighlight[i].GetComponent<Image>().color;
+            imageColor[i] = objectHighlight[i].GetComponent<Image>();
+        }
+    }
+
     public void GiveHint()
     {
         if (!gameMode.audioSource.isPlaying && waitPlay == false)
         {
             waitPlay = true;
 
-            gameMode.PlaySound(hint);
+            gameMode.PlaySound(hintClip);
 
             StartCoroutine(HighLightObjects());
         }

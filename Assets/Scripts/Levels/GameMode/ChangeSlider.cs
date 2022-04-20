@@ -67,5 +67,15 @@ public class ChangeSlider : MonoBehaviour
         Debug.Log("finished");
 
         gameMode.PlaySound(clip);
+
+        int temp = PlayerPrefs.GetInt("points");
+        int tempIncrease = 10;
+        for(float i = -0.2f; i < coinFloat; i += 0.2f)
+        {
+            temp += tempIncrease;
+            tempIncrease += 10;
+        }
+        PlayerPrefs.SetInt("points", temp);
+        Debug.Log(PlayerPrefs.GetInt("points"));
     }
 }

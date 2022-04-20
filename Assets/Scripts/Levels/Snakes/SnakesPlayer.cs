@@ -47,4 +47,26 @@ public class SnakesPlayer : MonoBehaviour
 
         SnakesManager.snakesManager.PlayerMoved();
     }
+
+
+    public void MoveToFakeEnd(GameObject destination, GameObject actualDestination, int rolled)
+    {
+        StartCoroutine(LerpFakeEndPosition(destination, actualDestination, rolled));
+    }
+
+    //moves to the end first before moving back
+    IEnumerator LerpFakeEndPosition(GameObject destination, GameObject actualDestination, int rolled)
+    {
+        timeElapsed = 0;
+        while (Mathf.Abs(this.transform.position.x - destination.transform.position.x) > distance || Mathf.Abs(this.transform.position.y - destination.transform.position.y) > distance)
+        {
+            this.transform.position = Vector3.Lerp(this.transform.position, destination.transform.position, timeElapsed / speed);
+            timeElapsed = Time.fixedDeltaTime;
+            yield return null;
+        }
+        this.transform.position = destination.transform.position;
+
+        MoveToNewPosition(actualDestination, rolled);
+    }
+
 }

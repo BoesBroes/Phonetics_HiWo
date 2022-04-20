@@ -11,11 +11,15 @@ public class SnakesDice : MonoBehaviour
 
     public SnakesManager snakeManager;
 
+    public AudioClip diceRoll;
+    public AudioClip diceResult;
+
     public void RollDice()
     {
         if(snakeManager.playerTurn)
         {
             snakeManager.playerTurn = false;
+            snakeManager.gameMode.PlaySound(diceRoll);
             StartCoroutine(Rolling());
         }
     }
@@ -81,7 +85,14 @@ public class SnakesDice : MonoBehaviour
 
         if (final)
         {
-            snakeManager.MoveCurrentPlayer(temp + 1);
+            snakeManager.gameMode.PlaySound(diceResult);
+            StartCoroutine(WaitForSound(temp));
         }
+    }
+
+    IEnumerator WaitForSound(int temp)
+    {
+        yield return new WaitForSeconds(diceResult.length);
+        snakeManager.MoveCurrentPlayer(temp + 1);
     }
 }

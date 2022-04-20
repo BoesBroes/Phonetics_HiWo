@@ -52,16 +52,25 @@ public class DiceManager : MonoBehaviour
         {
             resultTwo = result;
 
-            if (!playerTurn)
-            {
-                SnailTask.snailTask.AIDecision(resultOne, resultTwo);
-            }
-            else
-            {
-                SnailTask.snailTask.ActivateButtons(resultOne, resultTwo);
-            }
-            numberOfResults = 0;
+            SnailTask.snailTask.gameMode.PlaySound(diceResult);
+
+            StartCoroutine(WaitForSound());
         }
 
+    }
+
+    IEnumerator WaitForSound()
+    {
+        yield return new WaitForSeconds(diceResult.length);
+
+        if (!playerTurn)
+        {
+            SnailTask.snailTask.AIDecision(resultOne, resultTwo);
+        }
+        else
+        {
+            SnailTask.snailTask.ActivateButtons(resultOne, resultTwo);
+        }
+        numberOfResults = 0;
     }
 }

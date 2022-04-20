@@ -24,12 +24,22 @@ public class MemoryManager : TaskMain
     private int aiScore;
     public Text scoreText;
 
+    public AudioClip[] correct;
+    public AudioClip yourTurn;
+
     public bool playerTurn;
 
     private int cardCount;
 
     private int[] cardAIFlipCount;
 
+    //if right cards, turn remains
+    private bool rightCards;
+
+    public Hint hint;
+    public ObtainedCards[] obtainedCards;
+
+    public Text[] endText;
     void Awake()
     {
         if (memoryManager == null)
@@ -76,31 +86,46 @@ public class MemoryManager : TaskMain
             listNumbers.Add(number);
         }
 
-        //first set original words in order of cards
-        for(int i = 0; i < cards.Length / 2; i++)
-        {
-            cards[i].word = allWords[listNumbers[i]];
-        }
+        //this one used to assign it to random cards
+        List<int> cardNumbers = new List<int>();
+        int cardNum;
 
-        List<int> listRan = new List<int>();
-        int ranNum;
-
-        //set ran numbers to 12
-        for (int i = 0; i < cards.Length / 2; i++)
+        for (int i = 0; i < 24; i++)
         {
             do
             {
-                ranNum = Random.Range(0, 12);
+                cardNum = Random.Range(0, 24);
             }
             while
-            (listRan.Contains(ranNum));
-            listRan.Add(ranNum);
+            (cardNumbers.Contains(cardNum));
+            cardNumbers.Add(cardNum);
         }
+
+        //first set original words in order of cards
+        for (int i = 0; i < cards.Length / 2; i++)
+        {
+            cards[cardNumbers[i]].word = allWords[listNumbers[i]];
+        }
+
+        //List<int> listRan = new List<int>();
+        //int ranNum;
+
+        ////set ran numbers to 12
+        //for (int i = 0; i < cards.Length / 2; i++)
+        //{
+        //    do
+        //    {
+        //        ranNum = Random.Range(0, 12);
+        //    }
+        //    while
+        //    (listRan.Contains(ranNum));
+        //    listRan.Add(ranNum);
+        //}
 
         //set duplicate word to card
         for (int i = 0; i < cards.Length / 2; i++)
         {
-            cards[listRan[i] + 12].word = allWords[listNumbers[i]];
+            cards[cardNumbers[i + 12]].word = allWords[listNumbers[i]];
         }
     }
 
@@ -119,13 +144,30 @@ public class MemoryManager : TaskMain
     {
         if (currentImageObjects[0].word == currentImageObjects[1].word)
         {
+            gameMode.StartMultipleSounds(correct);
+
             //increase score and add extra card to make it go to the next turn in Proceed
-            score++;
             cardCount++;
+            rightCards = true;
+            if(playerTurn)
+            {
+                score++;
+                obtainedCards[0].CardObtained(currentImageObjects[0].wordImage.sprite);
+            }
+            else
+            {
+                aiScore++;
+                obtainedCards[1].CardObtained(currentImageObjects[0].wordImage.sprite);
+            }
+
+            //2 cards leave the board (soon)
+            cardsLeft -= 2;
+
             Proceed();
         }
         else
         {
+            rightCards = false;
             if (playerTurn)
             {
                 repeatMemory.StartWordPlayer(currentImageObjects[0].word, currentImageObjects[0].wordImage);
@@ -134,8 +176,6 @@ public class MemoryManager : TaskMain
             {
                 repeatMemory.StartWordAI(currentImageObjects[0].word, currentImageObjects[0].wordImage);
             }
-
-
         }
     }
 
@@ -153,14 +193,17 @@ public class MemoryManager : TaskMain
         {
             cardCount = 0;
 
-            cardsLeft -= 2;
-
             if (cardsLeft > 0)
             {
                     StartCoroutine(ShowImagesTime(2.5f));
             }
             else
             {
+                for(int i = 0; i < endText.Length; i++)
+                {
+                    endText[i].text = score.ToString() + " tegen " + aiScore.ToString();
+                }
+
                 if (score > aiScore)
                 {
                     gameMode.win = true;
@@ -204,9 +247,18 @@ public class MemoryManager : TaskMain
         if (currentImageObjects[0].word == currentImageObjects[1].word)
         {
             currentImageObjects[0].transform.parent = this.transform;
-            currentImageObjects[1].transform.parent = this.transform;
+            currentImageObjects[1].transform.parent = this.transform;            
+
             Destroy(currentImageObjects[0].gameObject);
             Destroy(currentImageObjects[1].gameObject);
+
+            hint.objectHighlight = new GameObject[board.transform.childCount];
+            for(int i = 0; i < board.transform.childCount; i++)
+            {
+                hint.objectHighlight[i] = board.transform.GetChild(i).gameObject;
+            }
+            //see comments @Hint
+            hint.ReFindColors();
         }
         else
         {
@@ -216,15 +268,33 @@ public class MemoryManager : TaskMain
 
         clicks = 0;
 
-        if(playerTurn)
+        if(!rightCards)
         {
-            playerTurn = false;
-            AITurn();
+            if (playerTurn)
+            {
+                playerTurn = false;
+                AITurn();
+            }
+            else
+            {
+                gameMode.PlaySound(yourTurn);
+                playerTurn = true;
+            }
         }
         else
         {
-            playerTurn = true;
-        }
+            if (playerTurn)
+            {
+                gameMode.PlaySound(yourTurn);
+                playerTurn = true;
+            }
+            else
+            {
+                playerTurn = false;
+                AITurn();
+            }
+        }    
+       
     }
 
     private void AITurn()

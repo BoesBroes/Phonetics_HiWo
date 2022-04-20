@@ -22,6 +22,11 @@ public class SnailTask : TaskMain
     public ColorWin colorWin;
 
     public AudioClip walkScrape;
+
+    public AudioClip diceHint;
+    public AudioClip snailHint;
+
+    public Hint hint;
     void Awake()
     {
         if (snailTask == null)
@@ -68,12 +73,16 @@ public class SnailTask : TaskMain
 
     public void ActivateButtons(int resultone, int resultTwo)
     {
+        hint.hintClip = snailHint;
+
         tracks[resultone].ActivateButton();
         tracks[resultTwo].ActivateButton();
     }
 
     public void DeactivateAllButtons()
     {
+        hint.hintClip = diceHint;
+
         for (int i = 0; i < tracks.Length; i++)
         {
             tracks[i].DeactivateButton();

@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Memory.unity
     guid: 9d420da17522efa40b256c76fa915306
+  - enabled: 1
+    path: Assets/Scenes/Menus/Characters.unity
+    guid: c9aa5d04ecff744429c681bccfca2d6e
+  - enabled: 1
+    path: Assets/Scenes/Levels/Snakes.unity
+    guid: b4dbb649d4d70e9409bbba12bcae89c5
   m_configObjects: {}

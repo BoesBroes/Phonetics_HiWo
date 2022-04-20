@@ -74,9 +74,13 @@ public class SnakesManager : TaskMain
         if (rolled + players[turn].position > places.Length - 1)
         {
             rolled = ((places.Length - 1) - (players[turn].position + rolled)) + ((places.Length - 1) - players[turn].position);
+            players[turn].MoveToFakeEnd(places[places.Length - 1].gameObject, places[rolled + players[turn].position].gameObject, rolled);
             Debug.Log(rolled);
         }
-        players[turn].MoveToNewPosition(places[rolled + players[turn].position].gameObject, rolled);
+        else
+        {
+            players[turn].MoveToNewPosition(places[rolled + players[turn].position].gameObject, rolled);
+        }
     }
 
     public void PlayerMoved()
