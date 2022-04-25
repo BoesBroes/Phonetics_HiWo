@@ -2409,7 +2409,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 69.7}
-  m_SizeDelta: {x: 160, y: 83.7}
+  m_SizeDelta: {x: 250, y: 83.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &189121204
 MonoBehaviour:
@@ -2888,6 +2888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 1106384399}
   sliderImage: {fileID: 1338743462}
+  coinsText: {fileID: 0}
   gameMode: {fileID: 1808149515}
   clip: {fileID: 8300000, guid: e4088c6371e3e8f4297ac8828e1a7b33, type: 3}
   coinClip: {fileID: 8300000, guid: 8018b7e435ba6d5428a9f3faef752fe4, type: 3}
@@ -5109,13 +5110,15 @@ GameObject:
   - component: {fileID: 415273921}
   - component: {fileID: 415273923}
   - component: {fileID: 415273922}
+  - component: {fileID: 415273925}
+  - component: {fileID: 415273924}
   m_Layer: 5
   m_Name: WordRepeater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &415273921
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5134,7 +5137,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &415273922
 MonoBehaviour:
@@ -5176,33 +5179,134 @@ MonoBehaviour:
   - caravan
   - drinken
   - eekhoorn
+  - kamperen
   - koffer
   - motorboot
   - omrijden
+  - onweer
   - parkeren
+  - pretpark
   - reizen
   - rivier
   - rondrijden
-  - teruggaan
   - terugrijden
+  - teruggaan
   - treinkaartje
   - verkeer
   - warmte
-  - ooievaar
-  - pretpark
   - zomer
   - dierentuin
   - hert
   - kinderboerderij
   - krokodil
+  - park
   - poort
   - tijger
   - achterpoot
   - giraffe
   - kangoeroe
+  - ooievaar
   - zebra
+  - boer
+  - boerderij
+  - paardrijden
+  - gieter
+  - grond
+  - hark
+  - kikker
+  - paard
+  - rat
+  - varken
+  - worm
+  - aarde
+  - graafmachine
+  - groente
+  - kater
+  - komkommer
+  - kruiwagen
+  - juffrouw
+  - rugzak
+  - werken
+  - werk
+  - aan de beurt
+  - antwoord
+  - begrijpen
+  - boterham
+  - directeur
+  - donderdag
+  - gepraat
+  - groeien
+  - grappig
+  - gymbroek
+  - herrie
+  - kinderen
+  - knikker
+  - ongehoorzaam
+  - rekenen
+  - tikkertje
+  - touwtrekken
+  - badkamer
+  - bord
+  - boter
+  - brood
+  - broertje
+  - dorp
+  - fruit
+  - garage
+  - gordijn
+  - computer
+  - kamer
+  - kraan
+  - vader
+  - moeder
+  - aanrecht
+  - ganzenbord
+  - verhuizen
+  - magnetron
+  - prettig
+  - bureau
+  - buren
   wordImage: {fileID: 1819141877}
   wordObject: {fileID: 415273922}
+  thisImage: {fileID: 0}
+--- !u!114 &415273924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415273920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.4, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &415273925
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415273920}
+  m_CullTransparentMesh: 1
 --- !u!1 &419690404
 GameObject:
   m_ObjectHideFlags: 0
@@ -6201,13 +6305,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498009815}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.21176471, g: 0.49411765, b: 0.92156863, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8087,7 +8191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.21176471, g: 0.49411765, b: 0.92156863, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11740,6 +11844,7 @@ RectTransform:
   - {fileID: 189121203}
   - {fileID: 891452455}
   - {fileID: 326637506}
+  - {fileID: 1132657481}
   m_Father: {fileID: 1245149202}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11785,6 +11890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 891452456}
   sliderImage: {fileID: 1192160169}
+  coinsText: {fileID: 1132657482}
   gameMode: {fileID: 1808149515}
   clip: {fileID: 8300000, guid: e4088c6371e3e8f4297ac8828e1a7b33, type: 3}
   coinClip: {fileID: 8300000, guid: 8018b7e435ba6d5428a9f3faef752fe4, type: 3}
@@ -13912,6 +14018,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1122896301}
   m_CullTransparentMesh: 1
+--- !u!1 &1132657480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1132657481}
+  - component: {fileID: 1132657483}
+  - component: {fileID: 1132657482}
+  m_Layer: 5
+  m_Name: CoinText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1132657481
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132657480}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 957318905}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.00024414062, y: 0.00024414062}
+  m_SizeDelta: {x: 160, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1132657482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132657480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1132657483
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132657480}
+  m_CullTransparentMesh: 1
 --- !u!1 &1151761536
 GameObject:
   m_ObjectHideFlags: 0
@@ -14222,13 +14407,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180365562}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.21176471, g: 0.49411765, b: 0.92156863, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -19158,7 +19343,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 65a89084c51df1a4289644cea67fa04e, type: 3}
     - target: {fileID: 5351666488243972133, guid: d03beba04a4c6f242a23acdc5453b6e9, type: 3}
       propertyPath: speed
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5351666488243972133, guid: d03beba04a4c6f242a23acdc5453b6e9, type: 3}
       propertyPath: gameMode
@@ -19303,6 +19488,10 @@ PrefabInstance:
     - target: {fileID: 5351666488243972136, guid: d03beba04a4c6f242a23acdc5453b6e9, type: 3}
       propertyPath: m_Name
       value: Hint
+      objectReference: {fileID: 0}
+    - target: {fileID: 5351666488243972136, guid: d03beba04a4c6f242a23acdc5453b6e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d03beba04a4c6f242a23acdc5453b6e9, type: 3}
@@ -19983,7 +20172,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1670824152
 RectTransform:
@@ -21745,7 +21934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1819141878
 RectTransform:
   m_ObjectHideFlags: 0

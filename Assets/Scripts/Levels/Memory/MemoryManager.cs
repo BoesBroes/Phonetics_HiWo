@@ -56,6 +56,8 @@ public class MemoryManager : TaskMain
     // Start is called before the first frame update
     public override void StartTask()
     {
+        hint.gameObject.SetActive(true);
+
         playerTurn = true;
 
         cardAIFlipCount = new int[2];
@@ -170,10 +172,12 @@ public class MemoryManager : TaskMain
             rightCards = false;
             if (playerTurn)
             {
+                repeatMemory.gameObject.SetActive(true);
                 repeatMemory.StartWordPlayer(currentImageObjects[0].word, currentImageObjects[0].wordImage);
             }
             else
             {
+                repeatMemory.gameObject.SetActive(true);
                 repeatMemory.StartWordAI(currentImageObjects[0].word, currentImageObjects[0].wordImage);
             }
         }
@@ -192,6 +196,7 @@ public class MemoryManager : TaskMain
         if (cardCount == 2)
         {
             cardCount = 0;
+            repeatMemory.gameObject.SetActive(false);
 
             if (cardsLeft > 0)
             {

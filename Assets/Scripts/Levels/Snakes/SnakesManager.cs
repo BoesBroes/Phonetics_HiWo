@@ -17,8 +17,11 @@ public class SnakesManager : TaskMain
     private int turn = 0;
 
     public WordImage wordImage;
+    public GameObject wordRepeat;
 
+    public AudioClip yourTurn;
 
+    public Hint hint;
     void Awake()
     {
         if (snakesManager == null)
@@ -36,6 +39,8 @@ public class SnakesManager : TaskMain
     public override void StartTask()
     {
         base.StartTask();
+
+        hint.gameObject.SetActive(true);
 
         playerTurn = true;
 
@@ -75,7 +80,6 @@ public class SnakesManager : TaskMain
         {
             rolled = ((places.Length - 1) - (players[turn].position + rolled)) + ((places.Length - 1) - players[turn].position);
             players[turn].MoveToFakeEnd(places[places.Length - 1].gameObject, places[rolled + players[turn].position].gameObject, rolled);
-            Debug.Log(rolled);
         }
         else
         {
@@ -100,7 +104,7 @@ public class SnakesManager : TaskMain
             return;
         }
 
-        wordImage.gameObject.SetActive(true);
+        wordRepeat.SetActive(true);
         wordImage.FindImage(places[players[turn].position].word);
 
         if (turn == 0)
@@ -117,13 +121,14 @@ public class SnakesManager : TaskMain
     {
         base.Proceed();
 
-        wordImage.gameObject.SetActive(false);
+        wordRepeat.gameObject.SetActive(false);
 
         turn++;
         if (turn > 3)
         {
             turn = 0;
             playerTurn = true;
+            gameMode.PlaySound(yourTurn);
         }
         else
         {

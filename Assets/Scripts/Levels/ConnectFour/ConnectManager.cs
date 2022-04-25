@@ -34,6 +34,7 @@ public class ConnectManager : TaskMain
 
     public WordImage wordImage;
 
+    public Hint hint;
     void Awake()
     {
         if(connectManager == null)
@@ -52,6 +53,7 @@ public class ConnectManager : TaskMain
     {
         playerTurn.SetActive(true);
         computerTurn.SetActive(false);
+        hint.gameObject.SetActive(true);
     }
 
     public void CheckRow(GameObject currentPosition, int currentRow, int rowNumber)

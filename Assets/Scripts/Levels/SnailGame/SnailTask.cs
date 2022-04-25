@@ -47,8 +47,8 @@ public class SnailTask : TaskMain
         {
             tracks[i] = board.transform.GetChild(i).GetComponent<TrackManager>();
         }
-        //decide who turns starts
-        
+
+        hint.gameObject.SetActive(true);
     }
 
     public void AIDecision(int resultone, int resultTwo)
@@ -102,11 +102,13 @@ public class SnailTask : TaskMain
         }
         else if (turnCount == 1)
         {
+            wordRepeater.gameObject.SetActive(true);
             wordRepeater.StartWord();
         }
         else
         {
-            diceManager.ThrowDice(false);
+            wordRepeater.gameObject.SetActive(true);
+            wordRepeater.AIWord();
         }
     }
 
@@ -114,6 +116,7 @@ public class SnailTask : TaskMain
     {
         base.Proceed();
         wordRepeater.StopWord();
+        wordRepeater.gameObject.SetActive(false);
         diceManager.ThrowDice(false);
     }
 

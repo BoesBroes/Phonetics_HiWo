@@ -7,6 +7,7 @@ public class ChangeSlider : MonoBehaviour
     public Slider slider;
     public Image sliderImage;
 
+    public Text coinsText;
 
     public TaskGameMode gameMode;
     public AudioClip clip;
@@ -37,6 +38,8 @@ public class ChangeSlider : MonoBehaviour
             slider.value = Mathf.Lerp(slider.value, accuracy, timeElapsed / slideSpeed);
 
             timeElapsed += Time.fixedDeltaTime;
+
+            Debug.Log(timeElapsed);
 
             Color statsColor = new Color(1 - slider.value, slider.value, 0, 1);
 
@@ -75,7 +78,9 @@ public class ChangeSlider : MonoBehaviour
             temp += tempIncrease;
             tempIncrease += 10;
         }
+        coinsText.text = "Je hebt +" + (temp - PlayerPrefs.GetInt("points")) + " punten gewonnen";
+
+
         PlayerPrefs.SetInt("points", temp);
-        Debug.Log(PlayerPrefs.GetInt("points"));
     }
 }

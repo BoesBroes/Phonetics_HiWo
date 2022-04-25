@@ -21,6 +21,7 @@ public class TrackManager : MonoBehaviour
     private float timeElapsed;
 
     public AudioClip scrapeSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +55,10 @@ public class TrackManager : MonoBehaviour
         //make the movement and sound little more in sync
         yield return new WaitForSeconds(.5f);
 
+        if(currentPosition > positions.Length)
+        {
+            currentPosition -= 1;
+        }
         StartCoroutine(MoveToPlace(positions[currentPosition].transform));
 
         //wait for sound to finish before playing next sound
@@ -71,6 +76,7 @@ public class TrackManager : MonoBehaviour
             yield return null;
         }
         piece.transform.position = destination.position;
+        steps = 1;
     }
 
     public void ActivateButton()

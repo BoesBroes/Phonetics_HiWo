@@ -11,6 +11,9 @@ public class SnakesPlayer : MonoBehaviour
     public float distance;
     private float timeElapsed;
 
+    public AudioClip ladder;
+    public AudioClip snakes;
+
     public void MoveToNewPosition(GameObject destination, int rolled)
     {
         position += rolled;
@@ -31,6 +34,15 @@ public class SnakesPlayer : MonoBehaviour
         //if ladder or snek
         if(destination.GetComponent<SnakesPlace>().isLadder || destination.GetComponent<SnakesPlace>().isSnake)
         {
+            if (destination.GetComponent<SnakesPlace>().isLadder)
+            {
+                SnakesManager.snakesManager.gameMode.PlaySound(ladder);
+            }
+            else
+            {
+                SnakesManager.snakesManager.gameMode.PlaySound(snakes);
+            }
+
             position += destination.GetComponent<SnakesPlace>().steps;
 
             destination = SnakesManager.snakesManager.places[position].gameObject;

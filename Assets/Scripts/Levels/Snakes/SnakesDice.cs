@@ -26,6 +26,7 @@ public class SnakesDice : MonoBehaviour
 
     public void AIDiceRoll()
     {
+        snakeManager.gameMode.PlaySound(diceRoll);
         StartCoroutine(Rolling());
     }
 

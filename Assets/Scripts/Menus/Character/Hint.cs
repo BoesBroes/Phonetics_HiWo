@@ -17,7 +17,7 @@ public class Hint : MonoBehaviour
 
     public float sizeIncrease;
     public float speed;
-    public float waitMaxSizeTime = 2;
+    public float waitMaxSizeTime = 2; //time it stays at increased size
     private Vector2 currentIncrease;
 
     private float timeElapsed;
