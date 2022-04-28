@@ -129,12 +129,14 @@ public class SnakesManager : TaskMain
             turn = 0;
             playerTurn = true;
             gameMode.PlaySound(yourTurn);
+            gameMode.noHints = false;
         }
         else
         {
             TurnAI();
+            gameMode.noHints = true;
         }
-        
+
     }
 
     private void TurnAI()

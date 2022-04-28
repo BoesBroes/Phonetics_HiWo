@@ -17,6 +17,10 @@ public class Option : MonoBehaviour
 
     public OptionsManager optionsManager;
 
+    public AudioClip bought;
+    public AudioClip notEnough;
+    public AudioClip switchChar;
+
     // Starts after optionmanager lockchecked each option
     public void StartUnlockCheck()
     {
@@ -48,16 +52,20 @@ public class Option : MonoBehaviour
 
                 optionsManager.ChangeCharacter(characterName);
                 optionsManager.ChangePoints();
+
+                TaskGameMode.gameMode.PlaySound(bought);
             }
             else
             {
-                //play sound here
+                TaskGameMode.gameMode.PlaySound(notEnough);
+
             }
         }
         //change the avatar
         else
         {
             optionsManager.ChangeCharacter(characterName);
+            TaskGameMode.gameMode.PlaySound(switchChar);
         }
     }
 }

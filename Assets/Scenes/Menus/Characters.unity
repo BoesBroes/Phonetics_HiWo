@@ -411,6 +411,9 @@ MonoBehaviour:
   characterImage: {fileID: 288533357}
   locked: 0
   optionsManager: {fileID: 1220913853}
+  bought: {fileID: 8300000, guid: 402ea22a58a153d4596a1ec0a0fa160a, type: 3}
+  notEnough: {fileID: 8300000, guid: 0af33243e30be2048a93b7a80397cac6, type: 3}
+  switchChar: {fileID: 8300000, guid: 99e6f4a1de90cc7429fd8195f676f75b, type: 3}
 --- !u!114 &288533357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,6 +539,9 @@ MonoBehaviour:
   characterImage: {fileID: 357415351}
   locked: 0
   optionsManager: {fileID: 1220913853}
+  bought: {fileID: 8300000, guid: 402ea22a58a153d4596a1ec0a0fa160a, type: 3}
+  notEnough: {fileID: 8300000, guid: 0af33243e30be2048a93b7a80397cac6, type: 3}
+  switchChar: {fileID: 8300000, guid: 99e6f4a1de90cc7429fd8195f676f75b, type: 3}
 --- !u!114 &357415351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,6 +1125,9 @@ MonoBehaviour:
   characterImage: {fileID: 1049483545}
   locked: 0
   optionsManager: {fileID: 1220913853}
+  bought: {fileID: 8300000, guid: 402ea22a58a153d4596a1ec0a0fa160a, type: 3}
+  notEnough: {fileID: 8300000, guid: 0af33243e30be2048a93b7a80397cac6, type: 3}
+  switchChar: {fileID: 8300000, guid: 99e6f4a1de90cc7429fd8195f676f75b, type: 3}
 --- !u!114 &1049483548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1579,6 +1588,9 @@ MonoBehaviour:
   characterImage: {fileID: 1333684745}
   locked: 0
   optionsManager: {fileID: 1220913853}
+  bought: {fileID: 8300000, guid: 402ea22a58a153d4596a1ec0a0fa160a, type: 3}
+  notEnough: {fileID: 8300000, guid: 0af33243e30be2048a93b7a80397cac6, type: 3}
+  switchChar: {fileID: 8300000, guid: 99e6f4a1de90cc7429fd8195f676f75b, type: 3}
 --- !u!114 &1333684745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1974,6 +1986,9 @@ MonoBehaviour:
   characterImage: {fileID: 1626439425}
   locked: 0
   optionsManager: {fileID: 1220913853}
+  bought: {fileID: 8300000, guid: 402ea22a58a153d4596a1ec0a0fa160a, type: 3}
+  notEnough: {fileID: 8300000, guid: 0af33243e30be2048a93b7a80397cac6, type: 3}
+  switchChar: {fileID: 8300000, guid: 99e6f4a1de90cc7429fd8195f676f75b, type: 3}
 --- !u!114 &1626439425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2347,6 +2362,9 @@ MonoBehaviour:
   characterImage: {fileID: 1945752849}
   locked: 0
   optionsManager: {fileID: 1220913853}
+  bought: {fileID: 8300000, guid: 402ea22a58a153d4596a1ec0a0fa160a, type: 3}
+  notEnough: {fileID: 8300000, guid: 0af33243e30be2048a93b7a80397cac6, type: 3}
+  switchChar: {fileID: 8300000, guid: 99e6f4a1de90cc7429fd8195f676f75b, type: 3}
 --- !u!114 &1945752849
 MonoBehaviour:
   m_ObjectHideFlags: 0

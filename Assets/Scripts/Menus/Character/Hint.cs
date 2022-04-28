@@ -49,7 +49,7 @@ public class Hint : MonoBehaviour
         }
     }
 
-    //innefficient, use list next time
+    //innefficient, use list next time, used in case gameobjects are destroyed
     public void ReFindColors()
     {
         for (int i = 0; i < objectHighlight.Length; i++)
@@ -62,7 +62,7 @@ public class Hint : MonoBehaviour
 
     public void GiveHint()
     {
-        if (!gameMode.audioSource.isPlaying && waitPlay == false)
+        if (!gameMode.audioSource.isPlaying && waitPlay == false && !TaskGameMode.gameMode.noHints)
         {
             waitPlay = true;
 

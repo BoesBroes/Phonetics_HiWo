@@ -18,7 +18,13 @@ public class ChangeSlider : MonoBehaviour
     private float timeElapsed;
 
     private float coinFloat = 0;
+
+    public Text grade;
     //but also play sound
+
+    public GameObject[] medals;
+    public AudioClip medalSound;
+
     public void SliderChange(float accuracy)
     {
         //slider.value = accuracy;
@@ -39,8 +45,6 @@ public class ChangeSlider : MonoBehaviour
 
             timeElapsed += Time.fixedDeltaTime;
 
-            Debug.Log(timeElapsed);
-
             Color statsColor = new Color(1 - slider.value, slider.value, 0, 1);
 
             sliderImage.color = statsColor;
@@ -57,17 +61,14 @@ public class ChangeSlider : MonoBehaviour
 
         slider.value = accuracy;
 
-        Color lastStatsColor = new Color(1 - slider.value, slider.value, 0, 1);
-
-        sliderImage.color = lastStatsColor;
+        //Color lastStatsColor = new Color(1 - slider.value, slider.value, 0, 1);
 
         if (slider.value == 1)
         {
             gameMode.PlaySound(coinClip);
-            yield return new WaitForSeconds(coinClip.length);
         }
 
-        Debug.Log("finished");
+        yield return new WaitForSeconds(coinClip.length);
 
         gameMode.PlaySound(clip);
 
@@ -80,7 +81,45 @@ public class ChangeSlider : MonoBehaviour
         }
         coinsText.text = "Je hebt +" + (temp - PlayerPrefs.GetInt("points")) + " punten gewonnen";
 
+        grade.text = "Cijfer: " + (Mathf.Round(slider.value * 1000) / 100);
 
         PlayerPrefs.SetInt("points", temp);
+
+        StartCoroutine(ShowMedals());
+    }
+
+    IEnumerator ShowMedals()
+    {
+        if(slider.value >= .5)
+        {
+            medals[0].SetActive(true);
+            gameMode.PlaySound(medalSound);
+            yield return new WaitForSeconds(medalSound.length / 2);
+        }
+        else
+        {
+            yield return null;
+        }
+
+        if (slider.value >= .7)
+        {
+            medals[1].SetActive(true);
+            gameMode.PlaySound(medalSound);
+            yield return new WaitForSeconds(medalSound.length / 2);
+        }
+
+        if (slider.value >= .85)
+        {
+            medals[2].SetActive(true);
+            gameMode.PlaySound(medalSound);
+            yield return new WaitForSeconds(medalSound.length / 2);
+        }
+
+        if (slider.value >= .95)
+        {
+            medals[3].SetActive(true);
+            gameMode.PlaySound(medalSound);
+            yield return new WaitForSeconds(medalSound.length / 2);
+        }
     }
 }

@@ -20,8 +20,6 @@ public class WordRepeater : MonoBehaviour
 
         wordImage.SetActive(true);
 
-        Debug.Log(words[temp]);
-
         //dont forget to set new images as sprites in editor!
         if (Resources.Load<Sprite>("Image/" + words[temp]))
         {
@@ -45,7 +43,7 @@ public class WordRepeater : MonoBehaviour
 
         wordImage.SetActive(true);
 
-        Debug.Log(words[temp]);
+        //Debug.Log(words[temp]);
 
         //dont forget to set new images as sprites in editor!
         if (Resources.Load<Sprite>("Image/" + words[temp]))

@@ -34,6 +34,8 @@ public class ConnectManager : TaskMain
 
     public WordImage wordImage;
 
+    public AudioClip yourTurn;
+
     public Hint hint;
     void Awake()
     {
@@ -223,7 +225,7 @@ public class ConnectManager : TaskMain
 
             if (redRowCount == 4)
             {
-                won = false;
+                won = true;
                 Debug.Log("insert winning condition");
                 gameMode.lose = true;
                 gameMode.EndLevel();
@@ -291,6 +293,8 @@ public class ConnectManager : TaskMain
         {
             turnPlayer = false;
 
+            gameMode.noHints = true;
+
             computerTurn.GetComponent<AITurn>().AIStartturn();
         }
         else if (computerTurn.transform.childCount == 0)
@@ -299,6 +303,10 @@ public class ConnectManager : TaskMain
         }
         else
         {
+            gameMode.noHints = false;
+
+            gameMode.PlaySound(yourTurn);
+
             turnPlayer = true;
 
             playerTurn.SetActive(true);

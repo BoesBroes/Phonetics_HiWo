@@ -277,11 +277,13 @@ public class MemoryManager : TaskMain
         {
             if (playerTurn)
             {
+                gameMode.noHints = true;
                 playerTurn = false;
                 AITurn();
             }
             else
             {
+                gameMode.noHints = false;
                 gameMode.PlaySound(yourTurn);
                 playerTurn = true;
             }
@@ -290,11 +292,13 @@ public class MemoryManager : TaskMain
         {
             if (playerTurn)
             {
+                gameMode.noHints = false;
                 gameMode.PlaySound(yourTurn);
                 playerTurn = true;
             }
             else
             {
+                gameMode.noHints = true;
                 playerTurn = false;
                 AITurn();
             }

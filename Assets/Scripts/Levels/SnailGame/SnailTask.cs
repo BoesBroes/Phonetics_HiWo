@@ -26,6 +26,8 @@ public class SnailTask : TaskMain
     public AudioClip diceHint;
     public AudioClip snailHint;
 
+    public AudioClip yourTurn;
+
     public Hint hint;
     void Awake()
     {
@@ -98,6 +100,8 @@ public class SnailTask : TaskMain
         }
         if(turnCount == 0)
         {
+            gameMode.noHints = false;
+            gameMode.PlaySound(yourTurn);
             diceManager.ChangePlayerTurn();
         }
         else if (turnCount == 1)
@@ -115,6 +119,7 @@ public class SnailTask : TaskMain
     public override void Proceed()
     {
         base.Proceed();
+        gameMode.noHints = true;
         wordRepeater.StopWord();
         wordRepeater.gameObject.SetActive(false);
         diceManager.ThrowDice(false);

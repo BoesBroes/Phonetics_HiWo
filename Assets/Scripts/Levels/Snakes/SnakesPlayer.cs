@@ -13,7 +13,7 @@ public class SnakesPlayer : MonoBehaviour
 
     public AudioClip ladder;
     public AudioClip snakes;
-
+    public AudioClip walk;
     public void MoveToNewPosition(GameObject destination, int rolled)
     {
         position += rolled;
@@ -23,6 +23,8 @@ public class SnakesPlayer : MonoBehaviour
     IEnumerator LerpPosition(GameObject destination)
     {
         timeElapsed = 0;
+        SnakesManager.snakesManager.gameMode.PlaySound(walk);
+
         while (Mathf.Abs(this.transform.position.x - destination.transform.position.x) > distance || Mathf.Abs(this.transform.position.y - destination.transform.position.y) > distance)
         {
             this.transform.position = Vector3.Lerp(this.transform.position, destination.transform.position, timeElapsed / speed);
@@ -70,6 +72,8 @@ public class SnakesPlayer : MonoBehaviour
     IEnumerator LerpFakeEndPosition(GameObject destination, GameObject actualDestination, int rolled)
     {
         timeElapsed = 0;
+        SnakesManager.snakesManager.gameMode.PlaySound(walk);
+
         while (Mathf.Abs(this.transform.position.x - destination.transform.position.x) > distance || Mathf.Abs(this.transform.position.y - destination.transform.position.y) > distance)
         {
             this.transform.position = Vector3.Lerp(this.transform.position, destination.transform.position, timeElapsed / speed);

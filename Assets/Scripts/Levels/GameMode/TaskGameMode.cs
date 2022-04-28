@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class TaskGameMode : TaskMain
 {
+    public static TaskGameMode gameMode;
+
     //[Header("UI")]
     //public UIManager UI;
     public GameObject endScreenWin;
@@ -52,6 +54,24 @@ public class TaskGameMode : TaskMain
     public float attempts;
     public float rightAttempts;
     private float accuracy;
+
+    //shoudlve set hint here earlier and a NoHint function instead of the current works (oh well)
+    public Hint hint;
+
+    public bool noHints;
+    
+    void Awake()
+    {
+        if (gameMode == null)
+        {
+            gameMode = this;
+        }
+        else
+        {
+            Destroy(gameMode);
+            gameMode = this;
+        }
+    }
 
     void Start()
     {
@@ -240,6 +260,8 @@ public class TaskGameMode : TaskMain
         {
             task.SetActive(false);
         }
+
+        hint.gameObject.SetActive(false);
 
         if(win)
         {
