@@ -74,10 +74,10 @@ public class ChangeSlider : MonoBehaviour
 
         int temp = PlayerPrefs.GetInt("points");
         int tempIncrease = 10;
-        for(float i = -0.2f; i < coinFloat; i += 0.2f)
+        for(float i = 0.2f; i <= slider.value; i += 0.2f)
         {
             temp += tempIncrease;
-            tempIncrease += 10;
+            tempIncrease += 20;
         }
         coinsText.text = "Je hebt +" + (temp - PlayerPrefs.GetInt("points")) + " punten gewonnen";
 
@@ -101,21 +101,21 @@ public class ChangeSlider : MonoBehaviour
             yield return null;
         }
 
-        if (slider.value >= .7)
+        if (slider.value >= .65)
         {
             medals[1].SetActive(true);
             gameMode.PlaySound(medalSound);
             yield return new WaitForSeconds(medalSound.length / 2);
         }
 
-        if (slider.value >= .85)
+        if (slider.value >= .8)
         {
             medals[2].SetActive(true);
             gameMode.PlaySound(medalSound);
             yield return new WaitForSeconds(medalSound.length / 2);
         }
 
-        if (slider.value >= .95)
+        if (slider.value >= .9)
         {
             medals[3].SetActive(true);
             gameMode.PlaySound(medalSound);

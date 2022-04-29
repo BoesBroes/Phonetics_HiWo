@@ -103,9 +103,16 @@ public class RecognitionManager : MonoBehaviour
                 {
                     recognized = true;
 
-                    gameMode.attempts++;
-                    gameMode.rightAttempts++;
-
+                    if (totalAttempts == 0)
+                    {
+                        gameMode.attempts++;
+                        gameMode.rightAttempts++;
+                    }
+                    else
+                    {
+                        gameMode.attempts++;
+                        gameMode.rightAttempts += .75f;
+                    }
 
                     totalAttempts = 0;
                     currentAttempts = 0;
@@ -129,7 +136,6 @@ public class RecognitionManager : MonoBehaviour
             else if (currentAttempts == attemptsLength)
             {
                 currentAttempts = 0;
-                gameMode.attempts++;
                 StartCoroutine(WaitForSound(tryAgain));
             }
         }

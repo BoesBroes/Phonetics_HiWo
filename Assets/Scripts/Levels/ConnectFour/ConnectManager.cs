@@ -37,6 +37,8 @@ public class ConnectManager : TaskMain
     public AudioClip yourTurn;
 
     public Hint hint;
+
+    public GameObject wordBackground;
     void Awake()
     {
         if(connectManager == null)
@@ -74,6 +76,7 @@ public class ConnectManager : TaskMain
         yield return new WaitForSeconds(pieceCollisionSound.length);
 
         //show image on screen
+        wordBackground.SetActive(true);
         wordImage.gameObject.SetActive(true);
         wordImage.FindImage(currentLocation.GetComponent<WordObject>().word[0]);
 
@@ -85,6 +88,7 @@ public class ConnectManager : TaskMain
         base.Proceed();
 
         //remove image on screen
+        wordBackground.SetActive(false);
         wordImage.gameObject.SetActive(false);
 
         //check each location
