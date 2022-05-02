@@ -73,7 +73,7 @@ public class ChangeSlider : MonoBehaviour
         gameMode.PlaySound(clip);
 
         int temp = PlayerPrefs.GetInt("points");
-        int tempIncrease = 10;
+        int tempIncrease = 20;
         for(float i = 0.2f; i <= slider.value; i += 0.2f)
         {
             temp += tempIncrease;
