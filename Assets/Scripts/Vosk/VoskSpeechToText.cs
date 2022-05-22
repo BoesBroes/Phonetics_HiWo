@@ -85,9 +85,6 @@ public class VoskSpeechToText : MonoBehaviour
     //lock for StreamingIsBusy flag.
     private int _threadSafeBoolBackValue = 0;
 
-    //for loading screen
-    public float loadFloat = 0;
-
     //Flag to see if we are processing speech to text data.
     public bool StreamingIsBusy
     {
@@ -132,9 +129,6 @@ public class VoskSpeechToText : MonoBehaviour
     /// <param name="maxAlternatives">The maximum number of alternative phrases detected</param>
     public void StartVoskStt( List<string> keyPhrases= null, string modelPath = default, bool startMicrophone = false, int maxAlternatives = 3)
     {
-
-        loadFloat += .2f;
-
         if (_isInitializing)
         {
             Debug.LogError("Initializing in progress!");
@@ -163,6 +157,7 @@ public class VoskSpeechToText : MonoBehaviour
         StartCoroutine(DoStartVoskStt(startMicrophone));
         OnStatusUpdated?.Invoke("started real");
 
+
     }
 
     //Decompress model, load settings, start Vosk and optionally start the microphone
@@ -171,25 +166,19 @@ public class VoskSpeechToText : MonoBehaviour
         _isInitializing = true;
         yield return WaitForMicrophoneInput();
 
-        loadFloat += .2f;
-
         yield return Decompress();
-
-        loadFloat += .2f;
 
         OnStatusUpdated?.Invoke("Loading Model from: " + _decompressedModelPath);
         Vosk.Vosk.SetLogLevel(0);
         _model = new Model(_decompressedModelPath);
 
-        loadFloat += .2f;
-
         yield return null;
 
         OnStatusUpdated?.Invoke("Initialized");
+        LevelManager.levelManager.voskLoaded = true;
+
         VoiceProcessor.OnFrameCaptured += VoiceProcessorOnOnFrameCaptured;
         VoiceProcessor.OnRecordingStop += VoiceProcessorOnOnRecordingStop;
-
-        loadFloat += .2f;
 
         if (startMicrophone)
             VoiceProcessor.StartRecording();

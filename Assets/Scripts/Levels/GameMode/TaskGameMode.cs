@@ -94,38 +94,9 @@ public class TaskGameMode : TaskMain
             currentTask.gameObject.SetActive(true);
 
             currentTask.StartTask();
-
-            StartCoroutine(WaitForVoskLoad());
         }
 
         
-    }
-
-    IEnumerator WaitForVoskLoad()
-    {
-        resultText.text = "loading..";
-        //wait until vosk has the model loaded to activate the first task
-        //I know how this looks, just want a quick and ez loading screen
-        yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText.loadFloat >= .2f);
-        currentTask.StartTask();
-
-        yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText.loadFloat >= .4f);
-        currentTask.StartTask();
-
-        yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText.loadFloat >= .6f);
-        currentTask.StartTask();
-
-        yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText.loadFloat >= .8f);
-        currentTask.StartTask();
-
-        yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText.loadFloat == 1);
-
-        yield return new WaitUntil(() => VoskSpeechToText.voskSpeechToText._didInit == true);
-
-        yield return new WaitForSeconds(1f);
-        currentTask.gameObject.SetActive(true);
-        //currentTask.StartTask();
-        resultText.text = "loaded!";
     }
 
     //private void Update()
