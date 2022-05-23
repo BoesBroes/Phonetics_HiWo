@@ -152,7 +152,7 @@ public class RecognitionManager : MonoBehaviour
         {
             AudioClip temp = Resources.Load<AudioClip>("WordSound/" + currentWord.GetComponent<WordObject>().word[0]);
             gameMode.PlaySound(temp);
-            yield return new WaitForSeconds(temp.length);
+            yield return new WaitForSeconds(temp.length +2f);
         }
         else
         {
