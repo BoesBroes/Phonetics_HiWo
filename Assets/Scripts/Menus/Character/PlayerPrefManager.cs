@@ -17,6 +17,10 @@ public class PlayerPrefManager : MonoBehaviour
         {
             PlayerPrefs.SetString("character", "pinguin");
         }
+        if(PlayerPrefs.GetInt("difficulty") == 0)
+        {
+            PlayerPrefs.SetInt("difficulty", 5);
+        }    
     }
 
     //change character

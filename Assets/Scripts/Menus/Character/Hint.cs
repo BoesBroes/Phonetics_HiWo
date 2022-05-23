@@ -25,6 +25,9 @@ public class Hint : MonoBehaviour
     private Color[] color;
     private Image[] imageColor;
 
+    public float timeInactive = 30f;
+    private float currentTime;
+
     void Start()
     {
         if(PlayerPrefs.GetString("character") != "")
@@ -168,5 +171,22 @@ public class Hint : MonoBehaviour
         }
 
         waitPlay = false;
+    }
+
+    private void Update()
+    {
+        currentTime += Time.deltaTime;
+
+        if (currentTime >= timeInactive)
+        {
+            currentTime = Time.deltaTime;
+            Debug.Log("hint played");
+            GiveHint();
+        }
+        if (Input.anyKey)
+        {
+            currentTime = Time.deltaTime;
+            Debug.Log("hint avoided");
+        }
     }
 }
