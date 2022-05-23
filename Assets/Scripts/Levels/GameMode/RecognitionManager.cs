@@ -16,6 +16,7 @@ public class RecognitionManager : MonoBehaviour
     public AudioClip recognizeSound;
     public AudioClip jingle;
 
+    public AudioClip noDetection;
     public AudioClip notRecognized;
 
     //private bool runningRecognition = false;
@@ -30,6 +31,7 @@ public class RecognitionManager : MonoBehaviour
 
     private GameObject currentWord;
 
+    private bool continueChecks = true;
     void Awake()
     {
         if (recognitionManager == null)
@@ -63,6 +65,8 @@ public class RecognitionManager : MonoBehaviour
         gameMode.PlaySound(currentClip);
 
         yield return new WaitForSeconds(currentClip.length);
+
+        continueChecks = true;
 
         if(Resources.Load<AudioClip>("WordSound/" + currentWord.GetComponent<WordObject>().word[0]))
         {
@@ -123,21 +127,33 @@ public class RecognitionManager : MonoBehaviour
                     return;
                 }
             }
-            //if word not recognized
-            totalAttempts++;
-            currentAttempts++;
 
-            if ((totalAttempts / attemptsLength) >= maxAttempts)
+            //if no input (dont remember why it always 'unks')
+            if(result == "" || result == "<unk>")
             {
-                totalAttempts = 0;
-                currentAttempts = 0;
-                gameMode.attempts++;
-                StartCoroutine(NotRecognized());
+                continueChecks = false;
+                StartCoroutine(WaitForSound(noDetection));
+                return;
             }
-            else if (currentAttempts == attemptsLength)
+
+            if (continueChecks)
             {
-                currentAttempts = 0;
-                StartCoroutine(WaitForSound(tryAgain));
+                //if word not recognized
+                totalAttempts++;
+                currentAttempts++;
+
+                if ((totalAttempts / attemptsLength) >= maxAttempts)
+                {
+                    totalAttempts = 0;
+                    currentAttempts = 0;
+                    gameMode.attempts++;
+                    StartCoroutine(NotRecognized());
+                }
+                else if (currentAttempts == attemptsLength)
+                {
+                    currentAttempts = 0;
+                    StartCoroutine(WaitForSound(tryAgain));
+                }
             }
         }
         else
@@ -185,6 +201,7 @@ public class RecognitionManager : MonoBehaviour
         //continue
         EndRecognition();
     }
+
 
     private void EndRecognition()
     {

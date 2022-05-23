@@ -169,6 +169,8 @@ public class MemoryManager : TaskMain
         }
         else
         {
+            gameMode.noHints = true;
+
             rightCards = false;
             if (playerTurn)
             {

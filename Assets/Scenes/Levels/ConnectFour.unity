@@ -18278,6 +18278,10 @@ PrefabInstance:
       propertyPath: que
       value: 
       objectReference: {fileID: 8300000, guid: 3724e9802ba1866448c3e67619ac6187, type: 3}
+    - target: {fileID: 6428764998498005101, guid: 3dd13e242f7617e4989a5fac913f7b10, type: 3}
+      propertyPath: noDetection
+      value: 
+      objectReference: {fileID: 8300000, guid: ba7cf41dae2679745b773eda31fb57bb, type: 3}
     - target: {fileID: 6428764998498005106, guid: 3dd13e242f7617e4989a5fac913f7b10, type: 3}
       propertyPath: m_Name
       value: TaskGameMode

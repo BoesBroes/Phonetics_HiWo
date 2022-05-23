@@ -21500,6 +21500,7 @@ MonoBehaviour:
   tryAgain: {fileID: 8300000, guid: 0df15bcb143bdcf49b77b18f910f9bb7, type: 3}
   recognizeSound: {fileID: 8300000, guid: e4088c6371e3e8f4297ac8828e1a7b33, type: 3}
   jingle: {fileID: 8300000, guid: 2e50bf96ac54b3343947dbf0574ea745, type: 3}
+  noDetection: {fileID: 8300000, guid: ba7cf41dae2679745b773eda31fb57bb, type: 3}
   notRecognized: {fileID: 8300000, guid: c83f325fe12374b408a6e7e4d8e9a627, type: 3}
   attemptsLength: 0
   maxAttempts: 2

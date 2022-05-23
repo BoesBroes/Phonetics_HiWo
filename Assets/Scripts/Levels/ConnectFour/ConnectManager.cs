@@ -80,6 +80,8 @@ public class ConnectManager : TaskMain
         wordImage.gameObject.SetActive(true);
         wordImage.FindImage(currentLocation.GetComponent<WordObject>().word[0]);
 
+        TaskGameMode.gameMode.noHints = true;
+
         RecognitionManager.recognitionManager.RecognizeWord(currentLocation, turnPlayer);
     }
 

@@ -109,6 +109,7 @@ public class SnakesManager : TaskMain
 
         if (turn == 0)
         {
+            TaskGameMode.gameMode.noHints = true;
             RecognitionManager.recognitionManager.RecognizeWord(places[players[turn].position].gameObject, true);
         }
         else

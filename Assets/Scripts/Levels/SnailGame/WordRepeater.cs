@@ -32,6 +32,8 @@ public class WordRepeater : MonoBehaviour
 
         wordImage.GetComponent<Image>().SetNativeSize();
 
+        TaskGameMode.gameMode.noHints = true;
+
         RecognitionManager.recognitionManager.RecognizeWord(wordObject.gameObject, true);
     }
 

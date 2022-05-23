@@ -175,8 +175,14 @@ public class Hint : MonoBehaviour
 
     private void Update()
     {
-        currentTime += Time.deltaTime;
-
+        if(!TaskGameMode.gameMode.noHints)
+        {
+            currentTime += Time.deltaTime;
+        }
+        else
+        {
+            currentTime = 0f;
+        }
         if (currentTime >= timeInactive)
         {
             currentTime = Time.deltaTime;
