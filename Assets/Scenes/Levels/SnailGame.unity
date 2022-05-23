@@ -21495,7 +21495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMode: {fileID: 1808149515}
-  startSound: {fileID: 8300000, guid: 49d172c202c88bb4db87288fe237ecf1, type: 3}
+  startSound: {fileID: 8300000, guid: d8a2be55f1325344eb9a9d843df44d8c, type: 3}
   que: {fileID: 8300000, guid: 3724e9802ba1866448c3e67619ac6187, type: 3}
   tryAgain: {fileID: 8300000, guid: 0df15bcb143bdcf49b77b18f910f9bb7, type: 3}
   recognizeSound: {fileID: 8300000, guid: e4088c6371e3e8f4297ac8828e1a7b33, type: 3}

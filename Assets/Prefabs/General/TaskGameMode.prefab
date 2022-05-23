@@ -61,6 +61,8 @@ MonoBehaviour:
   resultText: {fileID: 0}
   attempts: 0
   rightAttempts: 0
+  hint: {fileID: 0}
+  noHints: 0
 --- !u!114 &6428764998498005101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,11 +76,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMode: {fileID: 6428764998498005107}
-  startSound: {fileID: 8300000, guid: 49d172c202c88bb4db87288fe237ecf1, type: 3}
+  startSound: {fileID: 8300000, guid: d8a2be55f1325344eb9a9d843df44d8c, type: 3}
   que: {fileID: 8300000, guid: 2e50bf96ac54b3343947dbf0574ea745, type: 3}
   tryAgain: {fileID: 8300000, guid: 0df15bcb143bdcf49b77b18f910f9bb7, type: 3}
   recognizeSound: {fileID: 8300000, guid: e4088c6371e3e8f4297ac8828e1a7b33, type: 3}
   jingle: {fileID: 8300000, guid: 2e50bf96ac54b3343947dbf0574ea745, type: 3}
+  noDetection: {fileID: 8300000, guid: ba7cf41dae2679745b773eda31fb57bb, type: 3}
   notRecognized: {fileID: 8300000, guid: c83f325fe12374b408a6e7e4d8e9a627, type: 3}
   attemptsLength: 0
   maxAttempts: 2
