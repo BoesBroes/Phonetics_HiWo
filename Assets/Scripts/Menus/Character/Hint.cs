@@ -180,13 +180,14 @@ public class Hint : MonoBehaviour
         if (currentTime >= timeInactive)
         {
             currentTime = Time.deltaTime;
-            Debug.Log("hint played");
+            //Debug.Log("hint played");
             GiveHint();
         }
         if (Input.anyKey)
         {
+            //reset timer, no hint played 
             currentTime = Time.deltaTime;
-            Debug.Log("hint avoided");
+            //Debug.Log("hint avoided");
         }
     }
 }

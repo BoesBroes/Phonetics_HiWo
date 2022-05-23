@@ -68,7 +68,7 @@ public class RecognitionManager : MonoBehaviour
         {
             AudioClip temp = Resources.Load<AudioClip>("WordSound/" + currentWord.GetComponent<WordObject>().word[0]);
             gameMode.PlaySound(temp);
-            yield return new WaitForSeconds(temp.length + 1);
+            yield return new WaitForSeconds(temp.length);
         }
         else
         {
@@ -78,8 +78,9 @@ public class RecognitionManager : MonoBehaviour
             Debug.Log("no sound could be found");
         }
 
-        gameMode.PlaySound(que);
-        yield return new WaitForSeconds(que.length);
+        //cue removed because testing showed not necessary
+        //gameMode.PlaySound(que);
+        //yield return new WaitForSeconds(que.length);
 
         Debug.Log("Startrecording");
         VoskSpeechToText.voskSpeechToText.VoiceProcessor.StartRecording();
