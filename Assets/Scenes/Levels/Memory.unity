@@ -10244,7 +10244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: {fileID: 1932830956}
   recognitionManager: {fileID: 0}
-  startSound: {fileID: 8300000, guid: 67e16bf0e7db2b849a39d0ee1e7e044d, type: 3}
+  startSound: {fileID: 8300000, guid: dd78df4ae64f281489f8f2b75f48c603, type: 3}
 --- !u!114 &1098869596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19740,7 +19740,11 @@ PrefabInstance:
     - target: {fileID: 5351666488243972133, guid: d03beba04a4c6f242a23acdc5453b6e9, type: 3}
       propertyPath: hintClip
       value: 
-      objectReference: {fileID: 8300000, guid: 0d77a30307bd9da41ac714eb0c9a2ebe, type: 3}
+      objectReference: {fileID: 8300000, guid: d8850326f64ee0a45a9ffbdd4ca00b77, type: 3}
+    - target: {fileID: 5351666488243972133, guid: d03beba04a4c6f242a23acdc5453b6e9, type: 3}
+      propertyPath: hintOnStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5351666488243972133, guid: d03beba04a4c6f242a23acdc5453b6e9, type: 3}
       propertyPath: waitMaxSizeTime
       value: 2

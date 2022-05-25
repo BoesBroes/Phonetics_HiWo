@@ -6304,7 +6304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: {fileID: 1808149515}
   recognitionManager: {fileID: 0}
-  startSound: {fileID: 8300000, guid: 57e298655e9201c44ba2d727b3151548, type: 3}
+  startSound: {fileID: 8300000, guid: 48854b4b8a9bf5e44a4430ca1d55fcdf, type: 3}
 --- !u!114 &498009818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14083,10 +14083,11 @@ MonoBehaviour:
   wordRepeater: {fileID: 415273923}
   colorWin: {fileID: 957318906}
   walkScrape: {fileID: 8300000, guid: 0076242badd017847a5923c7a06060eb, type: 3}
-  diceHint: {fileID: 8300000, guid: 65a89084c51df1a4289644cea67fa04e, type: 3}
-  snailHint: {fileID: 8300000, guid: e0aff610e433ec644b16c37a5e994311, type: 3}
+  diceHint: {fileID: 8300000, guid: e607ccccf858a1a48bc54a80ea709699, type: 3}
+  snailHint: {fileID: 8300000, guid: e607ccccf858a1a48bc54a80ea709699, type: 3}
   yourTurn: {fileID: 8300000, guid: f8aab3fb2bcec11409a15bfca879f3af, type: 3}
   hint: {fileID: 133843729}
+  totalPlayers: 4
 --- !u!1 &1186870913
 GameObject:
   m_ObjectHideFlags: 0
@@ -18904,6 +18905,10 @@ PrefabInstance:
       propertyPath: hintClip
       value: 
       objectReference: {fileID: 8300000, guid: 65a89084c51df1a4289644cea67fa04e, type: 3}
+    - target: {fileID: 5351666488243972133, guid: d03beba04a4c6f242a23acdc5453b6e9, type: 3}
+      propertyPath: hintOnStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5351666488243972133, guid: d03beba04a4c6f242a23acdc5453b6e9, type: 3}
       propertyPath: waitMaxSizeTime
       value: 2

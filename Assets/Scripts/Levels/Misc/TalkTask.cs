@@ -17,7 +17,7 @@ public class TalkTask : TaskMain
 
     IEnumerator WaitSoundFinished()
     {
-        yield return new WaitForSeconds(startSound.length + 1.5f);
+        yield return new WaitForSeconds(startSound.length - 1.5f);
         gameMode.TaskFinished();
     }
 }

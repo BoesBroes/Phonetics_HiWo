@@ -129,6 +129,15 @@ public class MemoryManager : TaskMain
         {
             cards[cardNumbers[i + 12]].word = allWords[listNumbers[i]];
         }
+
+        if (gameMode.audioSource.isPlaying)
+        {
+            StartCoroutine(hint.WaitForStartHint());
+        }
+        else
+        {
+            hint.GiveHint();
+        }
     }
 
     public void ImageClicked(ShowImage imageObject)

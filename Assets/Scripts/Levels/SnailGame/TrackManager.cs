@@ -43,6 +43,10 @@ public class TrackManager : MonoBehaviour
         {
             steps = 2;
         }
+        else
+        {
+            steps = 1;
+        }
         currentPosition += steps;
 
         SnailTask.snailTask.PlaySoundWalk(scrapeSound);

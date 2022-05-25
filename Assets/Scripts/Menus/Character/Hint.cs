@@ -28,6 +28,11 @@ public class Hint : MonoBehaviour
     public float timeInactive = 30f;
     private float currentTime;
 
+    public bool hintOnStart = false;
+
+    private bool startRan = false;
+    //private bool hintRunning = false; //used in case user interacts while hint is running to reset to original state
+    //private bool resetHighlightsOnTurn = false;
     void Start()
     {
         if(PlayerPrefs.GetString("character") != "")
@@ -50,6 +55,25 @@ public class Hint : MonoBehaviour
             color[i] =  objectHighlight[i].GetComponent<Image>().color;
             imageColor[i] = objectHighlight[i].GetComponent<Image>();
         }
+
+        //if(hintOnStart)
+        //{
+        //    StartCoroutine(WaitForStartHint());
+        //}
+
+        startRan = true;
+    }
+
+    //seems necessary to wait a sec for memory game, less than 1.5 secs makes it look ugly
+    //works on dev pc but might depend on performance and could still have issues on lower end hardware
+    //update, now used because talktask starts -1.5f earlier than voice is finished (hmm this could be done better
+    //now its played after level has finished loading the board or anything it needs (still could be done better, mostly in looks but no use in cleaning it up)
+
+    //now used for if audio still active
+    public IEnumerator WaitForStartHint()
+    {
+        yield return new WaitForSeconds(1.75f);
+        GiveHint();
     }
 
     //innefficient, use list next time, used in case gameobjects are destroyed
@@ -65,6 +89,8 @@ public class Hint : MonoBehaviour
 
     public void GiveHint()
     {
+        //hintRunning = true;
+
         if (!gameMode.audioSource.isPlaying && waitPlay == false && !TaskGameMode.gameMode.noHints)
         {
             waitPlay = true;
@@ -132,7 +158,7 @@ public class Hint : MonoBehaviour
 
         timeElapsed = 0;
 
-        //the current divided by the original is 1
+        //the current size divided by the original is 1
         while (currentIncrease.x > 1)
         {
             for (int i = 0; i < objectHighlight.Length; i++)
@@ -171,6 +197,7 @@ public class Hint : MonoBehaviour
         }
 
         waitPlay = false;
+        //hintRunning = false;
     }
 
     private void Update()
@@ -178,10 +205,21 @@ public class Hint : MonoBehaviour
         if(!TaskGameMode.gameMode.noHints)
         {
             currentTime += Time.deltaTime;
+            //if(resetHighlightsOnTurn)
+            //{
+            //    resetHighlightsOnTurn = false;
+            //}
         }
         else
         {
             currentTime = 0f;
+
+            //if hint was running and user interacted
+            //if(hintRunning)
+            //{
+            //    hintRunning = false;
+            //    resetHighlightsOnTurn = true;
+            //}
         }
         if (currentTime >= timeInactive)
         {
@@ -194,6 +232,24 @@ public class Hint : MonoBehaviour
             //reset timer, no hint played 
             currentTime = Time.deltaTime;
             //Debug.Log("hint avoided");
+        }
+    }
+
+    //normal people put onenable at the top of the script... I think?
+    private void OnEnable()
+    {
+        //dont run the first time (before some stuff initialized (not needed anyway, but a check to reset all objects in case a user interacted while highlighted))
+        if (startRan)
+        {
+            for (int i = 0; i < objectHighlight.Length; i++)
+            {
+                if (objectHighlight[i].activeSelf)
+                {
+                    objectHighlight[i].transform.localScale = currentVector[i];
+                    imageColor[i].color = color[i];
+                }
+            }
+            waitPlay = false;
         }
     }
 }

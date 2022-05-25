@@ -2636,7 +2636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: {fileID: 1556730883}
   recognitionManager: {fileID: 0}
-  startSound: {fileID: 8300000, guid: 77cc02f2f06b2414db5578803722ba00, type: 3}
+  startSound: {fileID: 8300000, guid: d5603fdc0ee4e8c449c0545e0b5f6ba9, type: 3}
 --- !u!114 &268388696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4032,7 +4032,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: 0
-  speed: 1
+  board:
+  - {fileID: 1595905584}
+  - {fileID: 1289913827}
+  - {fileID: 173806086}
+  - {fileID: 1663795357}
+  - {fileID: 93336803}
+  - {fileID: 540986158}
+  - {fileID: 1565701963}
+  - {fileID: 1201384127}
+  - {fileID: 1641567006}
+  - {fileID: 635012855}
+  - {fileID: 1529844309}
+  - {fileID: 826904952}
+  - {fileID: 1342175340}
+  - {fileID: 661343704}
+  - {fileID: 528584478}
+  - {fileID: 1976210463}
+  - {fileID: 1186302235}
+  - {fileID: 1865147979}
+  - {fileID: 761685839}
+  - {fileID: 183257813}
+  - {fileID: 483434819}
+  - {fileID: 1209381740}
+  - {fileID: 953268584}
+  - {fileID: 1769324182}
+  - {fileID: 1414345489}
+  - {fileID: 1715431203}
+  - {fileID: 1255387411}
+  - {fileID: 1081607897}
+  - {fileID: 469907965}
+  - {fileID: 491840056}
+  - {fileID: 240880123}
+  - {fileID: 1895923716}
+  - {fileID: 1724537649}
+  - {fileID: 1377673960}
+  - {fileID: 1088680311}
+  - {fileID: 831022219}
+  - {fileID: 1185114873}
+  - {fileID: 1983185896}
+  - {fileID: 864159641}
+  - {fileID: 2020930873}
+  - {fileID: 1980799821}
+  - {fileID: 509955697}
+  - {fileID: 1326045205}
+  - {fileID: 1591836183}
+  - {fileID: 1718212587}
+  - {fileID: 1322662917}
+  - {fileID: 1254672049}
+  - {fileID: 1673678347}
+  - {fileID: 1786068172}
+  - {fileID: 323935628}
+  - {fileID: 1612582968}
+  speed: 0.5
   distance: 10
   ladder: {fileID: 8300000, guid: 475686a50d6c4534588c4e8356ad682b, type: 3}
   snakes: {fileID: 8300000, guid: 6d4b7766896bf194c9227858ed6ec8ed, type: 3}
@@ -9880,6 +9932,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 277249ade90992f47ba8fbc73935dddc, type: 3}
     - target: {fileID: 5351666488243972133, guid: d03beba04a4c6f242a23acdc5453b6e9, type: 3}
+      propertyPath: hintOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5351666488243972133, guid: d03beba04a4c6f242a23acdc5453b6e9, type: 3}
       propertyPath: sizeIncrease
       value: 1.5
       objectReference: {fileID: 0}
@@ -14442,7 +14498,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: 0
-  speed: 1
+  board:
+  - {fileID: 1595905584}
+  - {fileID: 1289913827}
+  - {fileID: 173806086}
+  - {fileID: 1663795357}
+  - {fileID: 93336803}
+  - {fileID: 540986158}
+  - {fileID: 1565701963}
+  - {fileID: 1201384127}
+  - {fileID: 1641567006}
+  - {fileID: 635012855}
+  - {fileID: 1529844309}
+  - {fileID: 826904952}
+  - {fileID: 1342175340}
+  - {fileID: 661343704}
+  - {fileID: 528584478}
+  - {fileID: 1976210463}
+  - {fileID: 1186302235}
+  - {fileID: 1865147979}
+  - {fileID: 761685839}
+  - {fileID: 183257813}
+  - {fileID: 483434819}
+  - {fileID: 1209381740}
+  - {fileID: 953268584}
+  - {fileID: 1769324182}
+  - {fileID: 1414345489}
+  - {fileID: 1715431203}
+  - {fileID: 1255387411}
+  - {fileID: 1081607897}
+  - {fileID: 469907965}
+  - {fileID: 491840056}
+  - {fileID: 240880123}
+  - {fileID: 1895923716}
+  - {fileID: 1724537649}
+  - {fileID: 1377673960}
+  - {fileID: 1088680311}
+  - {fileID: 831022219}
+  - {fileID: 1185114873}
+  - {fileID: 1983185896}
+  - {fileID: 864159641}
+  - {fileID: 2020930873}
+  - {fileID: 1980799821}
+  - {fileID: 509955697}
+  - {fileID: 1326045205}
+  - {fileID: 1591836183}
+  - {fileID: 1718212587}
+  - {fileID: 1322662917}
+  - {fileID: 1254672049}
+  - {fileID: 1673678347}
+  - {fileID: 1786068172}
+  - {fileID: 323935628}
+  - {fileID: 1612582968}
+  speed: 0.5
   distance: 10
   ladder: {fileID: 8300000, guid: 475686a50d6c4534588c4e8356ad682b, type: 3}
   snakes: {fileID: 8300000, guid: 6d4b7766896bf194c9227858ed6ec8ed, type: 3}
@@ -18128,7 +18236,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: 0
-  speed: 1
+  board:
+  - {fileID: 1595905584}
+  - {fileID: 1289913827}
+  - {fileID: 173806086}
+  - {fileID: 1663795357}
+  - {fileID: 93336803}
+  - {fileID: 540986158}
+  - {fileID: 1565701963}
+  - {fileID: 1201384127}
+  - {fileID: 1641567006}
+  - {fileID: 635012855}
+  - {fileID: 1529844309}
+  - {fileID: 826904952}
+  - {fileID: 1342175340}
+  - {fileID: 661343704}
+  - {fileID: 528584478}
+  - {fileID: 1976210463}
+  - {fileID: 1186302235}
+  - {fileID: 1865147979}
+  - {fileID: 761685839}
+  - {fileID: 183257813}
+  - {fileID: 483434819}
+  - {fileID: 1209381740}
+  - {fileID: 953268584}
+  - {fileID: 1769324182}
+  - {fileID: 1414345489}
+  - {fileID: 1715431203}
+  - {fileID: 1255387411}
+  - {fileID: 1081607897}
+  - {fileID: 469907965}
+  - {fileID: 491840056}
+  - {fileID: 240880123}
+  - {fileID: 1895923716}
+  - {fileID: 1724537649}
+  - {fileID: 1377673960}
+  - {fileID: 1088680311}
+  - {fileID: 831022219}
+  - {fileID: 1185114873}
+  - {fileID: 1983185896}
+  - {fileID: 864159641}
+  - {fileID: 2020930873}
+  - {fileID: 1980799821}
+  - {fileID: 509955697}
+  - {fileID: 1326045205}
+  - {fileID: 1591836183}
+  - {fileID: 1718212587}
+  - {fileID: 1322662917}
+  - {fileID: 1254672049}
+  - {fileID: 1673678347}
+  - {fileID: 1786068172}
+  - {fileID: 323935628}
+  - {fileID: 1612582968}
+  speed: 0.5
   distance: 10
   ladder: {fileID: 8300000, guid: 475686a50d6c4534588c4e8356ad682b, type: 3}
   snakes: {fileID: 8300000, guid: 6d4b7766896bf194c9227858ed6ec8ed, type: 3}
@@ -23286,7 +23446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLadder: 0
   isSnake: 1
-  steps: -10
+  steps: -14
   word: 
   wordImage: {fileID: 0}
   noImage: 0
@@ -28856,7 +29016,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: 0
-  speed: 1
+  board:
+  - {fileID: 1595905584}
+  - {fileID: 1289913827}
+  - {fileID: 173806086}
+  - {fileID: 1663795357}
+  - {fileID: 93336803}
+  - {fileID: 540986158}
+  - {fileID: 1565701963}
+  - {fileID: 1201384127}
+  - {fileID: 1641567006}
+  - {fileID: 635012855}
+  - {fileID: 1529844309}
+  - {fileID: 826904952}
+  - {fileID: 1342175340}
+  - {fileID: 661343704}
+  - {fileID: 528584478}
+  - {fileID: 1976210463}
+  - {fileID: 1186302235}
+  - {fileID: 1865147979}
+  - {fileID: 761685839}
+  - {fileID: 183257813}
+  - {fileID: 483434819}
+  - {fileID: 1209381740}
+  - {fileID: 953268584}
+  - {fileID: 1769324182}
+  - {fileID: 1414345489}
+  - {fileID: 1715431203}
+  - {fileID: 1255387411}
+  - {fileID: 1081607897}
+  - {fileID: 469907965}
+  - {fileID: 491840056}
+  - {fileID: 240880123}
+  - {fileID: 1895923716}
+  - {fileID: 1724537649}
+  - {fileID: 1377673960}
+  - {fileID: 1088680311}
+  - {fileID: 831022219}
+  - {fileID: 1185114873}
+  - {fileID: 1983185896}
+  - {fileID: 864159641}
+  - {fileID: 2020930873}
+  - {fileID: 1980799821}
+  - {fileID: 509955697}
+  - {fileID: 1326045205}
+  - {fileID: 1591836183}
+  - {fileID: 1718212587}
+  - {fileID: 1322662917}
+  - {fileID: 1254672049}
+  - {fileID: 1673678347}
+  - {fileID: 1786068172}
+  - {fileID: 323935628}
+  - {fileID: 1612582968}
+  speed: 0.5
   distance: 10
   ladder: {fileID: 8300000, guid: 475686a50d6c4534588c4e8356ad682b, type: 3}
   snakes: {fileID: 8300000, guid: 6d4b7766896bf194c9227858ed6ec8ed, type: 3}

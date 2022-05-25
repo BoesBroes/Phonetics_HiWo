@@ -31,6 +31,9 @@ public class RecognitionManager : MonoBehaviour
 
     private GameObject currentWord;
 
+    private bool firstWordCheck = true;
+    private bool attempt = false;
+
     private bool continueChecks = true;
     void Awake()
     {
@@ -101,6 +104,12 @@ public class RecognitionManager : MonoBehaviour
     {
         if (recognized == false)
         {
+            if(!attempt)
+            {
+                attempt = true;
+                totalAttempts++;
+            }    
+
             WordObject wordClass = currentWord.GetComponent<WordObject>();
             for (int i = 0; i < wordClass.word.Length; i++)
             {
@@ -129,9 +138,10 @@ public class RecognitionManager : MonoBehaviour
             }
 
             //if no input (dont remember why it always 'unks')
-            if(result == "" || result == "<unk>")
+            if(result == "" && firstWordCheck || result == "<unk>" && firstWordCheck)
             {
                 continueChecks = false;
+                firstWordCheck = false;
                 StartCoroutine(WaitForSound(noDetection));
                 return;
             }
@@ -139,11 +149,12 @@ public class RecognitionManager : MonoBehaviour
             if (continueChecks)
             {
                 //if word not recognized
-                totalAttempts++;
                 currentAttempts++;
 
-                if ((totalAttempts / attemptsLength) >= maxAttempts)
+                if (totalAttempts  >= maxAttempts)
                 {
+                    attempt = false;
+                    firstWordCheck = true;
                     totalAttempts = 0;
                     currentAttempts = 0;
                     gameMode.attempts++;
@@ -151,6 +162,8 @@ public class RecognitionManager : MonoBehaviour
                 }
                 else if (currentAttempts == attemptsLength)
                 {
+                    attempt = false;
+                    firstWordCheck = true;
                     currentAttempts = 0;
                     StartCoroutine(WaitForSound(tryAgain));
                 }

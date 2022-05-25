@@ -58,6 +58,15 @@ public class ConnectManager : TaskMain
         playerTurn.SetActive(true);
         computerTurn.SetActive(false);
         hint.gameObject.SetActive(true);
+
+        if(gameMode.audioSource.isPlaying)
+        {
+            StartCoroutine(hint.WaitForStartHint());
+        }
+        else
+        {
+            hint.GiveHint();
+        }
     }
 
     public void CheckRow(GameObject currentPosition, int currentRow, int rowNumber)

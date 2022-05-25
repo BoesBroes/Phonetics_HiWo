@@ -71,11 +71,22 @@ public class SnakesManager : TaskMain
             places[i].word = words[listNumbers[i]];
             places[i].SetImage();
         }
+
+        if (gameMode.audioSource.isPlaying)
+        {
+            StartCoroutine(hint.WaitForStartHint());
+        }
+        else
+        {
+            hint.GiveHint();
+        }
     }
 
 
     public void MoveCurrentPlayer(int rolled)
     {
+        //Debug.Log(rolled + players[turn].position);
+
         if (rolled + players[turn].position > places.Length - 1)
         {
             rolled = ((places.Length - 1) - (players[turn].position + rolled)) + ((places.Length - 1) - players[turn].position);
@@ -83,7 +94,7 @@ public class SnakesManager : TaskMain
         }
         else
         {
-            players[turn].MoveToNewPosition(places[rolled + players[turn].position].gameObject, rolled);
+            players[turn].MoveToNewPosition(places[rolled + players[turn].position].gameObject, rolled, false);
         }
     }
 

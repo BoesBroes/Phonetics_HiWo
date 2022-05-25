@@ -29,6 +29,10 @@ public class SnailTask : TaskMain
     public AudioClip yourTurn;
 
     public Hint hint;
+
+    //includes real player
+    public int totalPlayers;
+
     void Awake()
     {
         if (snailTask == null)
@@ -51,6 +55,15 @@ public class SnailTask : TaskMain
         }
 
         hint.gameObject.SetActive(true);
+
+        if (gameMode.audioSource.isPlaying)
+        {
+            StartCoroutine(hint.WaitForStartHint());
+        }
+        else
+        {
+            hint.GiveHint();
+        }
     }
 
     public void AIDecision(int resultone, int resultTwo)
@@ -94,15 +107,15 @@ public class SnailTask : TaskMain
     public void NextTurn()
     {
         turnCount++;
-        if(turnCount > 5)
+        //Debug.Log(turnCount);
+        if(turnCount >= totalPlayers)
         {
             turnCount = 0;
         }
         if(turnCount == 0)
         {
-            gameMode.noHints = false;
-            gameMode.PlaySound(yourTurn);
-            diceManager.ChangePlayerTurn();
+            wordRepeater.gameObject.SetActive(true);
+            wordRepeater.AIWord();
         }
         else if (turnCount == 1)
         {
@@ -119,10 +132,20 @@ public class SnailTask : TaskMain
     public override void Proceed()
     {
         base.Proceed();
-        gameMode.noHints = true;
         wordRepeater.StopWord();
         wordRepeater.gameObject.SetActive(false);
-        diceManager.ThrowDice(false);
+
+        if (turnCount == 0)
+        {
+            gameMode.noHints = false;
+            gameMode.PlaySound(yourTurn);
+            diceManager.ChangePlayerTurn();
+        }
+        else
+        {
+            gameMode.noHints = true;
+            diceManager.ThrowDice(false);
+        }
     }
 
     public void CheckWin(int positionNumber, int player)
