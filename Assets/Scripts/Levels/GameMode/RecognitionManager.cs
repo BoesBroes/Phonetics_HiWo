@@ -26,15 +26,15 @@ public class RecognitionManager : MonoBehaviour
     public int attemptsLength;
 
     public int maxAttempts = 2;
-    private int totalAttempts = 0;
-    private int currentAttempts = 0;
+    public int totalAttempts = 0;
+    public int currentAttempts = 0;
 
     private GameObject currentWord;
 
-    private bool firstWordCheck = true;
-    private bool attempt = false;
+    public bool firstWordCheck = true;
+    public bool attempt = false;
 
-    private bool continueChecks = true;
+    public bool continueChecks = true;
     void Awake()
     {
         if (recognitionManager == null)
@@ -69,9 +69,9 @@ public class RecognitionManager : MonoBehaviour
 
         yield return new WaitForSeconds(currentClip.length);
 
-        continueChecks = true;
+        firstWordCheck = true;
 
-        if(Resources.Load<AudioClip>("WordSound/" + currentWord.GetComponent<WordObject>().word[0]))
+        if (Resources.Load<AudioClip>("WordSound/" + currentWord.GetComponent<WordObject>().word[0]))
         {
             AudioClip temp = Resources.Load<AudioClip>("WordSound/" + currentWord.GetComponent<WordObject>().word[0]);
             gameMode.PlaySound(temp);
@@ -89,12 +89,14 @@ public class RecognitionManager : MonoBehaviour
         //gameMode.PlaySound(que);
         //yield return new WaitForSeconds(que.length);
 
-        Debug.Log("Startrecording");
+        continueChecks = true;
+
+        //Debug.Log("Startrecording");
         VoskSpeechToText.voskSpeechToText.VoiceProcessor.StartRecording();
 
         yield return new WaitForSeconds(5f);
 
-        Debug.Log("Stoprecording");
+        //Debug.Log("Stoprecording");
         VoskSpeechToText.voskSpeechToText.VoiceProcessor.StopRecording();
 
         //runningRecognition = false;
@@ -131,6 +133,8 @@ public class RecognitionManager : MonoBehaviour
                     totalAttempts = 0;
                     currentAttempts = 0;
 
+                    attempt = false;
+
                     StartCoroutine(Recognized());               
 
                     return;
@@ -151,8 +155,9 @@ public class RecognitionManager : MonoBehaviour
                 //if word not recognized
                 currentAttempts++;
 
-                if (totalAttempts  >= maxAttempts)
+                if (totalAttempts == maxAttempts && currentAttempts == attemptsLength)
                 {
+                    Debug.Log("lol");
                     attempt = false;
                     firstWordCheck = true;
                     totalAttempts = 0;
@@ -162,6 +167,7 @@ public class RecognitionManager : MonoBehaviour
                 }
                 else if (currentAttempts == attemptsLength)
                 {
+                    Debug.Log("lel");
                     attempt = false;
                     firstWordCheck = true;
                     currentAttempts = 0;
@@ -209,7 +215,8 @@ public class RecognitionManager : MonoBehaviour
     IEnumerator NotRecognized()
     {
         gameMode.PlaySound(notRecognized);
-        yield return new WaitForSeconds(notRecognized.length);
+        //extra magic number added or it would be a little too quick
+        yield return new WaitForSeconds(notRecognized.length + 0.25f);
 
         //continue
         EndRecognition();

@@ -1510,7 +1510,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &701612100
 GameObject:
@@ -3482,6 +3482,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blip: {fileID: 8300000, guid: 99e6f4a1de90cc7429fd8195f676f75b, type: 3}
+  buttonImage:
+  - {fileID: 110907557}
+  - {fileID: 1479166878}
+  - {fileID: 332497548}
 --- !u!114 &1393898093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3542,7 +3546,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1407816879
 GameObject:
@@ -4177,7 +4181,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1646138561
 MonoBehaviour:
@@ -5255,7 +5259,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2095041920
 MonoBehaviour:

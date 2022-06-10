@@ -16,7 +16,7 @@ public class VoskResultText : MonoBehaviour
 
     private void OnTranscriptionResult(string obj)
     {
-        Debug.Log(obj);
+        //Debug.Log(obj);
         ResultText.text = "Recognized: ";
         ResultText.text += "\n ---------- \n";
         var result = new RecognitionResult(obj);
@@ -36,7 +36,14 @@ public class VoskResultText : MonoBehaviour
             RecognitionManager.recognitionManager.attemptsLength = result.Phrases.Length;
             for (int i = 0; i < result.Phrases.Length; i++)
             {
-                RecognitionManager.recognitionManager.RunCheck(result.Phrases[i].Text);
+                //if(!RecognitionManager.recognitionManager.continueChecks)
+                //{
+                //    return;
+                //}
+                //else
+                //{
+                    RecognitionManager.recognitionManager.RunCheck(result.Phrases[i].Text);
+                //}
             }
         }
     }

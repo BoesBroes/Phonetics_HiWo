@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Dev/SpeechTestScene.unity
     guid: b1f6272fa7d53c343b9e7526ae58af74
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dev/LevelTemplate.unity
     guid: 01fe59ee3bd604342be70e994613fd7a
   - enabled: 1

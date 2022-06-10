@@ -16,7 +16,7 @@ public class VoskStatusText : MonoBehaviour
 
     private void OnStatusUpdated(string obj)
     {
-        Debug.Log(obj);
+        //Debug.Log(obj);
         StatusText.text = obj;
     }
 }
