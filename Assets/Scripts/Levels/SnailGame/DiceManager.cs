@@ -18,6 +18,12 @@ public class DiceManager : MonoBehaviour
 
     public AudioClip diceRoll;
     public AudioClip diceResult;
+
+    //just to be sure it doesnt go wrong here
+    private bool noNewResults;
+    private bool firstNumberIn;
+    private bool secondNumberIn;
+
     public void ChangePlayerTurn()
     {
         if(!buttonObject.activeSelf)
@@ -31,30 +37,44 @@ public class DiceManager : MonoBehaviour
     }
     public void ThrowDice(bool player)
     {
+        noNewResults = false;
+
+        firstNumberIn = false;
+        secondNumberIn = false;
+
         SnailTask.snailTask.gameMode.PlaySound(diceRoll);
 
         playerTurn = player;
 
-        diceRoller[0].RollDice();
-        diceRoller[1].RollDice();
+        diceRoller[0].RollDice(1);
+        diceRoller[1].RollDice(2);
     }
 
-    public void ThrowResult(int dice, int result)
+    public void ThrowResult(int dice, int result, int resultNumber)
     {
         numberOfResults++;
 
-        if (numberOfResults <= 1)
+        if (resultNumber == 1 && !firstNumberIn)
         {
             resultOne = result;
             SnailTask.snailTask.gameMode.PlaySound(diceResult);
+
+            firstNumberIn = true;
         }
-        else
+        else if(resultNumber == 2 && !secondNumberIn)
         {
             resultTwo = result;
-
             SnailTask.snailTask.gameMode.PlaySound(diceResult);
 
+            secondNumberIn = true;
+        }
+
+        if(numberOfResults >= 1 && !noNewResults && firstNumberIn && secondNumberIn)
+        {
+            noNewResults = true;
             StartCoroutine(WaitForSound());
+
+            numberOfResults = 0;
         }
 
     }
@@ -62,6 +82,10 @@ public class DiceManager : MonoBehaviour
     IEnumerator WaitForSound()
     {
         yield return new WaitForSeconds(diceResult.length);
+
+        Debug.Log(resultOne);
+        Debug.Log(resultTwo);
+
 
         if (!playerTurn)
         {

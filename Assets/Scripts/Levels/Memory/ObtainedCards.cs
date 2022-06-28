@@ -12,7 +12,7 @@ public class ObtainedCards : MonoBehaviour
     
     void Start()
     {
-        //yeah..
+        //setting component in editor would be more efficient..
         thisImage = new Image[this.transform.childCount];
         for(int i = 0; i < this.transform.childCount; i++)
         {

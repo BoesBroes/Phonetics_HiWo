@@ -80,7 +80,7 @@ public class SnailTask : TaskMain
             tracks[resultone].MovePiece(false);
         }
 
-        else
+        else if(temp == 1)
         {
             tracks[resultTwo].MovePiece(false);
         }
@@ -90,8 +90,16 @@ public class SnailTask : TaskMain
     {
         hint.hintClip = snailHint;
 
-        tracks[resultone].ActivateButton();
-        tracks[resultTwo].ActivateButton();
+        if(resultone == resultTwo)
+        {
+            tracks[resultone].ActivateButton(true);
+        }
+        else
+        {
+            tracks[resultone].ActivateButton(false);
+            tracks[resultTwo].ActivateButton(false);
+        }
+        
     }
 
     public void DeactivateAllButtons()

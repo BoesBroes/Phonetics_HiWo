@@ -2,8 +2,8 @@
     "m_SelectedDeviceId": "RF8N201L00L",
     "m_SelectedPackage": {
         "deviceId": "RF8N201L00L",
-        "name": "com.kbabilinski.voskspeech",
-        "processId": 17453,
+        "name": "com.HiWo.SpeechGame",
+        "processId": 14744,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -132,6 +132,18 @@
             "deviceId": "RF8N201L00L",
             "name": "com.kbabilinski.voskspeech",
             "processId": 17453,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.HiWo.SpeechGame",
+            "processId": 22466,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8N201L00L",
+            "name": "com.HiWo.SpeechGame",
+            "processId": 14744,
             "exited": false
         }
     ],

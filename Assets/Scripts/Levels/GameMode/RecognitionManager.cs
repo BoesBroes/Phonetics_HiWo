@@ -119,7 +119,7 @@ public class RecognitionManager : MonoBehaviour
                 {
                     recognized = true;
 
-                    if (totalAttempts == 0)
+                    if (totalAttempts == 1)
                     {
                         gameMode.attempts++;
                         gameMode.rightAttempts++;
@@ -157,7 +157,7 @@ public class RecognitionManager : MonoBehaviour
 
                 if (totalAttempts == maxAttempts && currentAttempts == attemptsLength)
                 {
-                    Debug.Log("lol");
+                    //Debug.Log("lol");
                     attempt = false;
                     firstWordCheck = true;
                     totalAttempts = 0;
@@ -167,7 +167,7 @@ public class RecognitionManager : MonoBehaviour
                 }
                 else if (currentAttempts == attemptsLength)
                 {
-                    Debug.Log("lel");
+                    //Debug.Log("lel");
                     attempt = false;
                     firstWordCheck = true;
                     currentAttempts = 0;

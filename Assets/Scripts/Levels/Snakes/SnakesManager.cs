@@ -86,9 +86,10 @@ public class SnakesManager : TaskMain
     public void MoveCurrentPlayer(int rolled)
     {
         //Debug.Log(rolled + players[turn].position);
-
+        //if the rolled number + currentposition is higher than the number of positions, the player will move to the finish and back
         if (rolled + players[turn].position > places.Length - 1)
         {
+            //places.length - 1 because the array starts at 0 (and is considered 1 length)
             rolled = ((places.Length - 1) - (players[turn].position + rolled)) + ((places.Length - 1) - players[turn].position);
             players[turn].MoveToFakeEnd(places[places.Length - 1].gameObject, places[rolled + players[turn].position].gameObject, rolled);
         }

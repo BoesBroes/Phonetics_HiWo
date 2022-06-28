@@ -22,6 +22,7 @@ public class TrackManager : MonoBehaviour
 
     public AudioClip scrapeSound;
 
+    private bool playerTurn;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,16 +39,27 @@ public class TrackManager : MonoBehaviour
     {
         SnailTask.snailTask.DeactivateAllButtons();
 
-        //if AI has 2 of the same colors
-        if (extra)
+        if (!playerTurn)
         {
-            steps = 2;
+            //if AI has 2 of the same colors
+            if (extra)
+            {
+                steps = 2;
+            }
+            else
+            {
+                steps = 1;
+            }
         }
-        else
-        {
-            steps = 1;
-        }
+
+        playerTurn = false;
+
         currentPosition += steps;
+
+        if(currentPosition >= positions.Length)
+        {
+            currentPosition = positions.Length;
+        }
 
         SnailTask.snailTask.PlaySoundWalk(scrapeSound);
 
@@ -83,14 +95,16 @@ public class TrackManager : MonoBehaviour
         steps = 1;
     }
 
-    public void ActivateButton()
+    public void ActivateButton(bool doubleTrouble)
     {
-        if(!buttonObject.activeSelf)
+        playerTurn = true;
+
+        buttonObject.SetActive(true);
+
+        if (!doubleTrouble)
         {
-            buttonObject.SetActive(true);
             steps = 1;
         }
-        //if activated twice (thus two of the same dice)
         else
         {
             steps = 2;

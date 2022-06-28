@@ -10,39 +10,46 @@ public class DiceRoller : MonoBehaviour
     public int dice;
 
     public DiceManager diceManager;
-    public void RollDice()
+    public void RollDice(int diceNumber)
     {
-        StartCoroutine(Rolling());
+        StartCoroutine(Rolling(diceNumber));
     }
 
-    IEnumerator Rolling()
+    IEnumerator Rolling(int diceNumber)
     {
-        Result(false);
-        yield return new WaitForSeconds(Random.Range(.1f, .5f));
+        Result(false, diceNumber);
+        if(diceNumber == 1)
+        {
+            yield return new WaitForSeconds(.1f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(.5f);
+        }
 
-        Result(false);
+        Result(false, diceNumber);
         yield return new WaitForSeconds(.2f);
 
-        Result(false);
+        Result(false, diceNumber);
         yield return new WaitForSeconds(.1f);
 
-        Result(false);
+        Result(false, diceNumber);
         yield return new WaitForSeconds(.3f);
 
-        Result(false);
+        Result(false, diceNumber);
         yield return new WaitForSeconds(.2f);
 
-        Result(false);
+        Result(false, diceNumber);
         yield return new WaitForSeconds(.2f);
 
-        Result(false);
+        Result(false, diceNumber);
         yield return new WaitForSeconds(.4f);
 
-        Result(true);
+        Result(true, diceNumber);
         yield return new WaitForSeconds(.4f);
     }
 
-    private void Result(bool final)
+    private void Result(bool final, int diceNumber)
     {
         int temp = Random.Range(0, 6);
 
@@ -71,7 +78,7 @@ public class DiceRoller : MonoBehaviour
 
         if(final)
         {
-            diceManager.ThrowResult(dice, temp);
+            diceManager.ThrowResult(dice, temp, diceNumber);
         }    
     }
 }
