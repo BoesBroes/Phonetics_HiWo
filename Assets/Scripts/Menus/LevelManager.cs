@@ -86,6 +86,11 @@ public class LevelManager : MonoBehaviour
 
                 if (voskLoaded)
                 {
+                    if(VoskSpeechToText.voskSpeechToText.MaxAlternatives != PlayerPrefs.GetInt("difficulty"))
+                    {
+                        VoskSpeechToText.voskSpeechToText._didInit = false;
+                        VoskSpeechToText.voskSpeechToText.StartVoskStt();
+                    }
                     asyncLoad.allowSceneActivation = true;
                     VoskSpeechToText.voskSpeechToText.MaxAlternatives = PlayerPrefs.GetInt("difficulty");
                     canvas.SetActive(false);
